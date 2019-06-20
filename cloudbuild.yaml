@@ -5,7 +5,7 @@ steps:
   entrypoint: 'bash'
   args: [ 
           '-c',
-          'build -t gcr.io/post-it-243617/postit:$REVISION_ID \
+          'docker build -t gcr.io/post-it-243617/postit:$REVISION_ID \
           --build-arg DB_USERNAME=$$sb_username \
           --build-arg  DB_PASSWORD=$$db_password \ 
           --build-arg  DB_NAME=$$db_name \
