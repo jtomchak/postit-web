@@ -3,7 +3,7 @@ steps:
 # Note: You need a shell to resolve environment variables with $$
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 
-          'docker',  'build', '-t',  'gcr.io/post-it-243617/postit:$REVISION_ID', \
+          'build', '-t',  'gcr.io/post-it-243617/postit:$REVISION_ID', \
           '--build-arg', 'DB_USERNAME=$$sb_username', \
           '--build-arg', 'DB_PASSWORD=$$db_password', \
           '--build-arg', 'DB_NAME=$$db_name', \
