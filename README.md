@@ -36,3 +36,7 @@ The reason really only comes down to deployment. Seems the only way I'm gonna ge
 [x] - create sql instance for project in gcloud
 [x] - connect manually to sql db `psql -h /tmp/cloudsql/[connection-name] -U postgres
 [x] - build a prod release
+
+...
+
+[x] - rolling updates with k8's
