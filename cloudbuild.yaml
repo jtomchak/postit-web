@@ -20,8 +20,6 @@ steps:
   args: ['push', 'gcr.io/post-it-243617/postit:$REVISION_ID'] 
   
 # Deploy to GAE
-- name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/post-it-243617/postit:$REVISION_ID"]
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
   - 'set'
