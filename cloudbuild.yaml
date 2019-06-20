@@ -5,12 +5,7 @@ steps:
   entrypoint: 'bash'
   args: [ 
           '-c',
-          'docker build -t gcr.io/post-it-243617/postit:$REVISION_ID \
-          --build-arg DB_USERNAME=$$sb_username \
-          --build-arg  DB_PASSWORD=$$db_password \ 
-          --build-arg  DB_NAME=$$db_name \
-          --build-arg  DB_SOCKET_DIR=$$db_socket_dir \
-          --build-arg  SECRET_KEY_BASE=$$secret_key_base  .'  
+          'docker build -t gcr.io/post-it-243617/postit:$REVISION_ID --build-arg DB_USERNAME=$$sb_username --build-arg DB_PASSWORD=$$db_password --build-arg  DB_NAME=$$db_name --build-arg  DB_SOCKET_DIR=$$db_socket_dir --build-arg SECRET_KEY_BASE=$$secret_key_base  .'  
         ]
   secretEnv: ['db_password', 'db_name', 'db_socket_dir', 'db_username', 'secret_key_base']  
   
