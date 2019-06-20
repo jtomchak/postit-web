@@ -5,12 +5,15 @@ ARG DB_PASSWORD
 ARG DB_NAME
 ARG DB_SOCKET_DIR
 ARG DB_USERNAME
+ARG SECRET_KEY_BASE
 ENV PORT=8080 MIX_ENV=prod REPLACE_OS_VARS=true TERM=xterm
 # Passing in db info at compile time using `--build-arg` with `docker build`
 ENV DB_USERNAME=${DB_USERNAME} \
   DB_PASSWORD=${DB_PASSWORD} \
   DB_NAME=${DB_NAME} \
-  DB_SOCKET_DIR=${DB_SOCKET_DIR}
+  DB_SOCKET_DIR=${DB_SOCKET_DIR} \
+  SECRET_KEY_BASE=${SECRET_KEY_BASE}
+
 WORKDIR /opt/app
 RUN printenv
 RUN apk update \
