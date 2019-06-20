@@ -31,7 +31,7 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=postit-cluster'
 
 secrets:
-- kmsKeyName: projects/post-it/locations/global/keyRings/vmi-integration-secrets/cryptoKeys/postit-web
+- kmsKeyName: projects/post-it-243617/locations/global/keyRings/vmi-integration-secrets/cryptoKeys/postit-web
   secretEnv:
     db_name: CiQAHWmR6w9yfZ3CWpTJRL+LugIp2a4lJ9S3rg+zj3CDco98RzMSMgC1028qVkuXJkuHzZguc0DIqZjCt6C+bHTBWZ6degDEgMR9PK/CyvmfRlX4Eoob1rlz
     db_password: CiQAHWmR62hlx670Jmb533iFZ2w1p3ZcokQTfEQT0kZcH4mkh4USMgC1028qRtAShxplIezPjZAW+pqpTlUJ6zrGbeS3Rjjna4Zj2VpFy5E94tEn1KVpseiV
