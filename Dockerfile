@@ -57,7 +57,7 @@ RUN apk update \
   && mkdir -p /tmp/cloudsql
 
 # The name of your application/release (required)
-ARG APP_NAME
+ARG APP_NAME=postit
 
 RUN apk update && \
   apk add --no-cache \
