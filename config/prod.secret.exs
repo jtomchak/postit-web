@@ -18,7 +18,8 @@ config :postit, Postit.Repo,
   password: System.get_env("DB_PASSWORD"),
   database: System.get_env("DB_NAME_BETA"),
   socket_dir: System.get_env("DB_SOCKET_DIR_BETA"),
-  pool_size: 5
+  timeout: 7200_000,
+  pool_size: 10 
 
 
 # secret_key_base =
