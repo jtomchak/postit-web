@@ -19,7 +19,7 @@ config :postit, Postit.Repo,
   database: System.get_env("DB_NAME_BETA"),
   socket_dir: System.get_env("DB_SOCKET_DIR_BETA"),
   timeout: 7200_000,
-  pool_size: 10 
+  pool_size: 2
 
 
 # secret_key_base =
