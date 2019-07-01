@@ -72,6 +72,4 @@ WORKDIR /opt/app
 
 COPY --from=builder /opt/built .
 
-CMD trap 'exit' INT; (/usr/local/bin/cloud_sql_proxy \
-  -projects=${GCLOUD_PROJECT_ID} -dir=/tmp/cloudsql &); \
-  /opt/app/bin/${APP_NAME} foreground
+CMD trap 'exit' INT;  /opt/app/bin/${APP_NAME} foreground 
