@@ -11,8 +11,9 @@ use Mix.Config
 # before starting your production server.
 config :postit, PostitWeb.Endpoint,
   http: [port: System.get_env("PORT") || 4000],
-  url: [host: "localhost", port: System.get_env("PORT") || 4000], # This is critical for ensuring web-sockets properly authorize.
+  # url: [host: "localhost", port: System.get_env("PORT") || 4000], # This is critical for ensuring web-sockets properly authorize.
   cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: false,
   server: true,
   root: ".",
   version: Application.spec(:postit, :vsn)

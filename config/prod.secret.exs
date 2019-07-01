@@ -20,6 +20,7 @@ config :postit, Postit.Repo,
   socket_dir: System.get_env("DB_SOCKET_DIR_BETA"),
   pool_size: 15
 
+
 # secret_key_base =
 #   System.get_env("SECRET_KEY_BASE") ||
 #     raise """

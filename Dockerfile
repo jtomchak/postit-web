@@ -1,5 +1,5 @@
 # The version of Alpine to use for the final image
-# This should match the version of Alpine that the `elixir:1.8.1-alpine` image uses
+# This should match the version of Alpine that the `elixir:1.7.2-alpine` image uses
 ARG ALPINE_VERSION=3.9
 
 FROM elixir:1.8.1-alpine AS builder
@@ -8,16 +8,16 @@ ARG APP_NAME=postit
 ARG APP_VSN=0.1.0
 ARG phoenix_subdir=.
 ARG DB_PASSWORD
-ARG DB_NAME_BETA
-ARG DB_SOCKET_DIR_BETA
+ARG DB_NAME
+ARG DB_SOCKET_DIR
 ARG DB_USERNAME
 ARG SECRET_KEY_BASE
 ENV PORT=8080 MIX_ENV=prod REPLACE_OS_VARS=true TERM=xterm
 # Passing in db info at compile time using `--build-arg` with `docker build`
 ENV DB_USERNAME=${DB_USERNAME} \
   DB_PASSWORD=${DB_PASSWORD} \
-  DB_NAME_BETA=${DB_NAME_BETA} \
-  DB_SOCKET_DIR_BETA=${DB_SOCKET_DIR_BETA} \
+  DB_NAME=${DB_NAME} \
+  DB_SOCKET_DIR=${DB_SOCKET_DIR} \
   SECRET_KEY_BASE=${SECRET_KEY_BASE} \
   APP_VSN=${APP_VSN} 
 
@@ -75,4 +75,3 @@ COPY --from=builder /opt/built .
 CMD trap 'exit' INT; (/usr/local/bin/cloud_sql_proxy \
   -projects=${GCLOUD_PROJECT_ID} -dir=/tmp/cloudsql &); \
   /opt/app/bin/${APP_NAME} foreground
-

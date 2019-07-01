@@ -14,17 +14,16 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/post-it-243617/postit:$REVISION_ID'] 
   
-# Deploy to GAE
-- name: 'gcr.io/cloud-builders/kubectl'
+# Deploy to AppEngine
+# gcloud app deploy --image-url gcr.io/YOUR_PROJECT_ID/YOUR_CONTAINER_IMAGE
+- name: 'gcr.io/cloud-builders/gcloud'
   args: [
-          'set',
-          'image',
-          'deployment/postit-web',
-          'postit-web=gcr.io/post-it-243617/postit:$REVISION_ID'
+          'app',
+          'deploy',
+          '--image-url',
+          'gcr.io/post-it-243617/postit:$REVISION_ID'
         ]
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=postit-cluster'
+
 
 secrets:
 - kmsKeyName: projects/post-it-243617/locations/global/keyRings/vmi-integration-secrets/cryptoKeys/postit-web
