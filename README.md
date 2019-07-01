@@ -40,3 +40,4 @@ The reason really only comes down to deployment. Seems the only way I'm gonna ge
 ...
 
 [x] - rolling updates with k8's
+[x] - ok where to start

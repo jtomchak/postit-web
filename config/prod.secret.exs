@@ -16,8 +16,8 @@ config :postit, Postit.Repo,
   # ssl: true,
   username: System.get_env("DB_USERNAME"),
   password: System.get_env("DB_PASSWORD"),
-  database: System.get_env("DB_NAME"),
-  socket_dir: System.get_env("DB_SOCKET_DIR"),
+  database: System.get_env("DB_NAME_BETA"),
+  socket_dir: System.get_env("DB_SOCKET_DIR_BETA"),
   pool_size: 15
 
 # secret_key_base =
