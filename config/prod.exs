@@ -16,7 +16,7 @@ config :postit, PostitWeb.Endpoint,
   check_origin: false,
   server: true,
   root: ".",
-  version: Application.spec(:postit, :vsn)
+  version: Application.spec(:postit, :vsn),
   rewrite_on: [:x_forwarded_proto]
 # Do not print debug messages in production
 config :logger, level: :info
