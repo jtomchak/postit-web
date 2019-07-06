@@ -2,6 +2,11 @@
   <h1><%= gettext "Welcome to %{name}!", name: "Post It" %></h1>
   <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
 </section>
+<ul>
+<%= for event <- @events do %>
+<li><%= event.title %>, <%= event.due %></li>
+<% end %>
+</ul>
 
 <section class="row">
   <article class="column">
