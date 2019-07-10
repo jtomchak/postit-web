@@ -20,10 +20,10 @@ defmodule UserFromAuth do
   end
 
   # Github does it this way
-  defp avatar_from_auth( %{info: %{urls: %{avatar_url}} }), do: image
+  defp avatar_from_auth( %{info: %{urls: %{avatar_url: image}} }), do: image
 
   # default case if nothing matches
-  defp avatar_from_auth do
+  defp avatar_from_auth( auth ) do
     Logger.warn auth.provider <> " needs to find an avatar URL pretty please!"
     Logger.debug(Poison.encode!(auth)) # What is poison doing?
     nil # what is the return nil? 
@@ -39,7 +39,7 @@ defmodule UserFromAuth do
       auth.info.name
     else 
       name = [auth.info.first_name, auth.info.last_name]
-      |> Enum.filter(&(&1 !=nil and != "")) # I can understand the logic, but the detail of the '&' ?
+      |> Enum.filter(&(&1 != nil and &1 != "")) # I can understand the logic, but the detail of the '&' ?
 
       cond do
         length(name) == 0 -> auth.info.nickname

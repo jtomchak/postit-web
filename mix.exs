@@ -45,7 +45,8 @@ defmodule Postit.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:distillery, "~> 2.0"},
       {:ueberauth, "~> 0.6.1"},
-      {:ueberauth_auth0, "~> 0.3.0"}
+      {:ueberauth_auth0, "~> 0.3.0"},
+      {:poison, "~> 4.0"}
     ]
   end
 
