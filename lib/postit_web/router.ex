@@ -1,5 +1,6 @@
 defmodule PostitWeb.Router do
   use PostitWeb, :router
+  require Ueberauth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,10 +14,20 @@ defmodule PostitWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", PostitWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback # this last item is the function to call? 
+
+  end
+
   scope "/", PostitWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/logout", AuthController, :logout
     resources "/events", EventController
   end
 
