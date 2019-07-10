@@ -24,10 +24,9 @@ defmodule UserFromAuth do
 
   # default case if nothing matches
   defp avatar_from_auth( auth ) do
-    Logger.warn auth.provider <> " needs to find an avatar URL pretty please!"
+    Logger.warn("#{auth.provider} needs to find an avatar URL pretty please!")
     Logger.debug(Poison.encode!(auth)) # What is poison doing?
-    nil # what is the return nil? 
-    #and what on earth is defp versus def, and the 'do: image'?
+    nil # what is the return nil? and what on earth is defp versus def, and the 'do: image'?
   end
 
   defp basic_info(auth) do
