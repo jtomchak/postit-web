@@ -5,9 +5,9 @@ steps:
   entrypoint: 'bash'
   args: [ 
           '-c',
-          'docker build -t gcr.io/post-it-243617/postit:$REVISION_ID --build-arg DB_PASSWORD=$$db_password --build-arg  DB_NAME_BETA=$$db_name_beta --build-arg DB_SOCKET_DIR_BETA=$$db_socket_dir_beta --build-arg DB_USERNAME=$$db_username --build-arg SECRET_KEY_BASE=$$secret_key_base  .'  
+          'docker build -t gcr.io/post-it-243617/postit:$REVISION_ID --build-arg DB_PASSWORD=$$db_password --build-arg  DB_NAME_BETA=$$db_name_beta --build-arg DB_SOCKET_DIR_BETA=$$db_socket_dir_beta --build-arg DB_USERNAME=$$db_username --build-arg SECRET_KEY_BASE=$$secret_key_base AUTH0_DOMAIN=$$auth0_domain AUTH0_CLIENT_ID=$$auth_client_id AUTH0_CLIENT_SECRET=$$auth_client_secret .'  
         ]
-  secretEnv: ['db_password', 'db_name_beta', 'db_socket_dir_beta', 'db_username', 'secret_key_base']  
+  secretEnv: ['db_password', 'db_name_beta', 'db_socket_dir_beta', 'db_username', 'secret_key_base', 'auth0_domain', 'auth0_client_id', 'auth0_client_secret']  
   
 
 # Push Images       
@@ -33,3 +33,6 @@ secrets:
     db_socket_dir_beta: CiQAHWmR6+t0ab/vbP+dY7810683m+fS+iXLYCG4f/xqesXo/qISXAC1028qs1S6q/laKjxb5iV40QDYjTgDNyVEb3xaI0EsntaYSy0qZsbgkJZH2lwRFQfOMatZ5mXR7KFMTPR4Tp8Srngp3eP5mottQuZq6CsJ/aoRfwq+6Azwaabs
     db_username: CiQAHWmR63G+OPHaUWxOF62HRN7hK+yNqT0UbU27YGGOrvz6quoSMgC1028q6XrU2ani05rRr+mjaTwXhni1VGi1sqcWrzMDMpSFALMXcr7u3dXAzSaJ9r4f
     secret_key_base: CiQAHWmR674RptPyFJt4tm3ox467gF3Oz49dGVt7IjaT68uwBP8SagC1028qxPgnRg3sOMDRudYntLj61I+SXRYTNmlu0Crkdq2xU5lnhfdRXXMep34g7vG5uWmr68Jlj5RslPqFmMusuOm+0cCB7HVv6G3CqWNYWsPTvyVEFUB5Re+thlwDLKYfZnDh4Wyrd7U=
+    auth0_domain: CiQAHWmR69cpA+Pmx9r9wtYeYYWJdIfaYawzss9TtiKYBJnhDWoSPwC1028qVjP2WadvIO7qZ7XAxGwe/jXYiBmivgtxIKNfeZwWeaq2JfahKaD+p6scL4DZ7XollP1teoG2SOq7Pg==
+    auth0_client_id: CiQAHWmR69c9wwZJBiAm85JIwGxI5AM6mx/WXjVzFnf8KbrTjOASSQC1028qyEQL2CvYndLgIo5txckmzS6olIh3f0FtQ4nS8E1eyQeBbqjz26sMKzGo/KufzyNYwRiVoWzoZ0+YpVVqDhNFy0MAbK4=
+    auth0_client_secret: CiQAHWmR62MUAFeYRJGnR/5s005xFQUi031Ri/O4GZyvePTWqIYSagC1028qnKyxoDmttMD6PP2FkixjGd6Wc5hcm0xNAjtfxdxZHS7u5tRxfY0N2PHEw9b2kKV14X8EYpjwQN6nKx7LJkqUieGfNTTMgoPftBJlnDzTQ0zFLoj/clETiF2rESqbOjCYRjOgYJc=
