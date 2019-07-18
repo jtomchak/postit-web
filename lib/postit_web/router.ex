@@ -29,6 +29,7 @@ defmodule PostitWeb.Router do
     get "/", PageController, :index
     get "/logout", AuthController, :logout
     resources "/events", EventController
+    resources "/posts", PostController
   end
 
   # Other scopes may use custom stacks.

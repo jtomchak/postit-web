@@ -23,6 +23,7 @@ defmodule PostitWeb do
 
       import Plug.Conn
       import PostitWeb.Gettext
+      # import PostitWeb.ControllerHelpers
       alias PostitWeb.Router.Helpers, as: Routes
     end
   end

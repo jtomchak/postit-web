@@ -4,18 +4,9 @@ defmodule PostitWeb.EventController do
   alias Postit.Events
   alias Postit.Events.Event
 
-  plug :secure
+  plug PostitWeb.Plugs.AuthenticateUser 
 
-  defp secure(conn, _params) do
-    user = get_session(conn, :current_user)
-    case user do
-      nil ->
-        conn |> redirect(to: "/auth/auth0") |> halt # what's halt?
-      _ ->
-        conn
-        |> assign(:current_user, user)
-    end
-  end
+
 
   def index(conn, _params) do
     events = Events.list_events()
