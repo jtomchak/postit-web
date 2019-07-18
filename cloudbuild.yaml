@@ -30,7 +30,9 @@ steps:
           'app',
           'deploy',
           '--image-url',
-          'gcr.io/post-it-243617/postit:$REVISION_ID'
+          'gcr.io/post-it-243617/postit:$REVISION_ID',
+          '--version=$REVISION_ID',
+          '--quiet'
         ]
 
 
