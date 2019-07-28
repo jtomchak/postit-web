@@ -1,3 +1,3 @@
 #!/bin/sh
 
-bin/postit command Elixir.Postit.ReleaseTasks migrate
+release_ctl eval --mfa "Postit.ReleaseTasks.migrate/1" --argv -- "$@"
