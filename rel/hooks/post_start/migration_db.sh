@@ -14,5 +14,7 @@ done
 set -e
 
 echo "Running migrations ..."
-bin/postit command Elixir.Postit.ReleaseTasks migrate
+release_ctl eval --mfa "Postit.ReleaseTasks.migrate/1" --argv -- "$@"
+
+
 echo "Migrations run successfully"
