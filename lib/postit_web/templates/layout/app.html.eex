@@ -4,36 +4,59 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Postit · Phoenix Framework</title>
+    <title>Postit · Own Your Content</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
   </head>
   <body>
     <header>
       <section class="container">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <%= if @current_user do %>
-            <li><a href="/">Home</a></li>
-            <li><a href="/posts">Posts</a></li>
-            <li class="active"><a href="/logout">Logout</a></li>
-            <% else %>
-            <li><a href="/">Home</a></li>
-            <li><a href="/auth/auth0">Login</a></li>
-            <li></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+        <nav role="navigation" class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">
+        <a class="navbar-item" href="https://postit.blog">
+          <img src="/images/post-it-logo.png" width="30">
         </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarSimple">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+        </div>
+
+    <div id="navbarSimple" class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+           <a class="navbar-item" href="/posts">Posts</a>
+           </div>
+        <div class="buttons">
+           <%= if @current_user do %>
+           <div class="navbar-item">
+          <a class="button is-primary" href="/logout">
+            <strong>Logout</strong>
+          </a>
+          </div>
+          <% else %>
+          <div class="navbar-item">
+          <a class="button is-primary" href="/auth/auth0">
+            Log in
+          </a>
+          <%end%>
+        </div>
+      </div>
+    </div>
+    </div>
+        </nav>
+        </div>
+        
       </section>
     </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <main role="main" class="section">
+      <%= unless is_nil(get_flash(@conn, :info)) do %>
+    <div class="notification is-info" role="alert"><%= get_flash(@conn, :info) %></div>
+  <% end %>
+  <%= unless is_nil(get_flash(@conn, :error)) do %>
+    <div class="notification is-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+  <% end %>
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
