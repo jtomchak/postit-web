@@ -5,7 +5,7 @@ defmodule Postit.Posting.Post do
   schema "posts" do
     field :content, :string
     field :title, :string
-    belongs_to :user, 
+    field :user_id, :string
 
     timestamps()
   end
@@ -13,7 +13,7 @@ defmodule Postit.Posting.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :content])
-    |> validate_required([:title, :content])
+    |> cast(attrs, [:title, :content, :user_id])
+    |> validate_required([:title, :content, :user_id])
   end
 end

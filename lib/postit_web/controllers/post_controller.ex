@@ -1,5 +1,6 @@
 defmodule PostitWeb.PostController do
   use PostitWeb, :controller
+  require Logger
 
   alias Postit.Posting
   alias Postit.Posting.Post
@@ -18,7 +19,8 @@ defmodule PostitWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-    case Posting.create_post(post_params) do
+  post_params_user = Map.put(post_params, "user_id", conn.assigns.current_user.id)
+    case Posting.create_post(post_params_user) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
