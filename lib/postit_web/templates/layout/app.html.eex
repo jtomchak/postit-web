@@ -12,24 +12,26 @@
     <header>
       <section class="container">
         <nav role="navigation" class="navbar" aria-label="main navigation">
+        <div class="container">
         <div class="navbar-brand">
-        <a class="navbar-item" href="https://postit.blog">
-          <img src="/images/post-it-logo.png" width="30">
+        <a class="navbar-item" href="/">
+          <img src="/images/post-it-brand.png" >
         </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarSimple">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
         </div>
+        </div>
 
-    <div id="navbarSimple" class="navbar-menu">
+    <div id="navbarMenu" class="navbar-menu">
     <div class="navbar-end">
+           <%= if @current_user do %>
       <div class="navbar-item">
-           <a class="navbar-item" href="/posts">Posts</a>
+           <a class="navbar-item is-active" href="/posts">Posts</a>
            </div>
         <div class="buttons">
-           <%= if @current_user do %>
            <div class="navbar-item">
           <a class="button is-primary" href="/logout">
             <strong>Logout</strong>
@@ -61,4 +63,5 @@
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
+  <script></script>
 </html>

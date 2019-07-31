@@ -1,5 +1,8 @@
-<section class="box">
+<section class="colums">
+<div class="column is-half is-offset-one-quarter">
   <h1><%= gettext "Welcome to %{name}!", name: "Post It" %></h1>
   <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
 </section>
+</div>
+
 

@@ -5,6 +5,7 @@ defmodule Postit.Posting.Post do
   schema "posts" do
     field :content, :string
     field :title, :string
+    belongs_to :user, 
 
     timestamps()
   end
