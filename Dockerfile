@@ -30,7 +30,7 @@ ENV DB_USERNAME=${DB_USERNAME} \
 WORKDIR /opt/app
 RUN printenv
 RUN apk update \
-  && apk --update add nodejs nodejs-npm \
+  && apk --no-cache --update add nodejs nodejs-npm \
   && mix local.rebar --force \
   && mix local.hex --force
 COPY . .
@@ -54,7 +54,8 @@ RUN \
 FROM alpine:${ALPINE_VERSION}
 ARG project_id
 ENV GCLOUD_PROJECT_ID=${project_id}
-RUN mkdir -p /usr/local/bin \
+RUN apk add bash ca-certificates openssl-dev \
+  && mkdir -p /usr/local/bin \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 \
   -O /usr/local/bin/cloud_sql_proxy \
   && chmod +x /usr/local/bin/cloud_sql_proxy \
