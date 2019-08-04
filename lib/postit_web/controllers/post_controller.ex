@@ -19,8 +19,9 @@ defmodule PostitWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-  post_params_user = Map.put(post_params, "user_id", conn.assigns.current_user.id)
-    case Posting.create_post(post_params_user) do
+    case post_params 
+    |> Map.put("user_id", conn.assigns.current_user.id) 
+    |> Posting.create_post() do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
