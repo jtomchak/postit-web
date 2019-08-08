@@ -22,6 +22,18 @@ defmodule Postit.Posting do
   end
 
   @doc """
+  Returns a list of posts by specific user_id
+
+  ## Examples
+
+    iex> get_posts_by(user_id)
+    [%Post{}, ...]
+  """
+  def get_posts_by(user_id) do
+    Post |> where(user_id: ^user_id) |> Repo.all
+  end
+
+  @doc """
   Gets a single post.
 
   Raises `Ecto.NoResultsError` if the Post does not exist.
