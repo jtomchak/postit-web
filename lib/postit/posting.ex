@@ -22,6 +22,18 @@ defmodule Postit.Posting do
   end
 
   @doc """
+  returns all posts ordered by data published
+
+    ## Examples
+
+      iex> list_posts_by_published()
+      [%Post{}, ...]
+  """
+  def list_posts_by_published do
+    Repo.all(from Post,
+              order_by: [desc: :updated_at])
+  end
+  @doc """
   Returns a list of posts by specific user_id
 
   ## Examples

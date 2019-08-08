@@ -1,8 +1,19 @@
 <section class="colums">
 <div class="column is-half is-offset-one-quarter">
   <h1><%= gettext "Welcome to %{name}!", name: "Post It" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
+  <p>A place to own your content<br/>with the goal of sharing it where you want.</p>
 </section>
 </div>
+
+  <div class="column is-three-fifths is-offset-one-fifth">
+<%= for post <- @posts do %>
+    <div class="box">
+      <p class="title is-5"><%= post.title %></p>
+      <p><%= post.content %></p>
+    </div>
+<% end %>
+</div>
+
+
 
 
