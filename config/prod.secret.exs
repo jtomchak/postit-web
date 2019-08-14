@@ -17,7 +17,6 @@ config :postit, Postit.Repo,
   username: System.get_env("DB_USERNAME"),
   password: System.get_env("DB_PASSWORD"),
   database: System.get_env("DB_NAME_BETA"),
-  socket_dir: System.get_env("DB_SOCKET_DIR_BETA"),
   timeout: 7200_000,
   pool_size: 2
 
