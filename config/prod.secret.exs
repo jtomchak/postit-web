@@ -18,15 +18,8 @@ config :postit, Postit.Repo,
   password: System.get_env("DB_PASSWORD"),
   database: System.get_env("DB_NAME_BETA"),
   timeout: 7200_000,
-  pool_size: 2
+  pool_size: 30
 
-
-# secret_key_base =
-#   System.get_env("SECRET_KEY_BASE") ||
-#     raise """
-#     environment variable SECRET_KEY_BASE is missing.
-#     You can generate one by calling: mix phx.gen.secret
-#     """
 
 config :postit, PostitWeb.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
