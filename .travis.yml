@@ -14,7 +14,7 @@ jobs:
   - stage: Compile
     name: Compile Postit Web App
   - script:
-    - mix edeliver build release --branch=BRANCH --verbose
+    - MIX_ENV=prod mix release
   - deploy:
       provider: script
       skip_cleanup: true
