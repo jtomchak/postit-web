@@ -1,6 +1,6 @@
 APP="postit"
 
-BUILD_HOST="localhost"
+BUILD_HOST="/home/travis/build"
 BUILD_USER="$USER"
 BUILD_AT="/tmp/"
 
