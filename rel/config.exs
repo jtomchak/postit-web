@@ -37,7 +37,7 @@ end
 environment :prod do
   set include_erts: true
   set include_src: false
-  set post_start_hooks: "rel/hooks/migration_db"
+  set post_start_hooks: "rel/hooks/post_start"
   set cookie: :"*p^BTu.Ly3<>SPo]B>x4PLM;/2q*bR^)a[PFY!|_ikDKGijzZ*NlBY[ow}u6M|D~"
   set vm_args: "rel/vm.args"
 end
@@ -51,6 +51,9 @@ release :postit do
   set version: current_version(:postit)
   set applications: [
     :runtime_tools
+  ]
+  set commands: [
+    "migrate": "rel/commands/migrate.sh"
   ]
 end
 
