@@ -2,13 +2,12 @@ APP="postit"
 
 BUILD_HOST="localhost"
 BUILD_USER="$USER"
-BUILD_AT="./"
+BUILD_AT="/tmp/"
 
 STAGING_HOSTS="stage.postit.blog"
 STAGING_USER="pw_user"
 DELIVER_TO="/home/pw_user"
 
-RELEASE_STORE_TYPE = "local"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
