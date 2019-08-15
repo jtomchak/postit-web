@@ -31,15 +31,15 @@ environment :dev do
   # dev mode.
   set dev_mode: true
   set include_erts: false
-  set cookie: :"q2DD@d7VYw_t^kOMhjAH]t;VLi&/;tRZuj3K4_H{T.ndNZ&pRN42gN&4fni[z==="
+  set cookie: :"J=;}|=QgpgwKU`m~=N/cG@WmrC;PCs)0iC/7U820jMf@KlJlb;v()&:UjmU?ss>p"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"M@vCU!2^l=!1Yz7%]W8c!W/&Byv*sVcfN}KgUBeq)[G2i@H:M>p:uma280AvMvZC"
+  set post_start_hooks: "rel/hooks/migration_db"
+  set cookie: :"*p^BTu.Ly3<>SPo]B>x4PLM;/2q*bR^)a[PFY!|_ikDKGijzZ*NlBY[ow}u6M|D~"
   set vm_args: "rel/vm.args"
-  set post_start_hooks: "rel/hooks/post_start"
 end
 
 # You may define one or more releases in this file.
@@ -51,9 +51,6 @@ release :postit do
   set version: current_version(:postit)
   set applications: [
     :runtime_tools
-  ]
-  set commands: [
-    "migrate": "rel/commands/migrate.sh"
   ]
 end
 
