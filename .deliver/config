@@ -1,17 +1,18 @@
 APP="postit"
 
-BUILD_HOST="/home/travis/build"
-BUILD_USER="$USER"
-BUILD_AT="/tmp/"
+BUILD_HOST="postit.blog"
+BUILD_USER="pw_user"
+BUILD_AT="/home/pw_user/app_build"
 
-STAGING_HOSTS="stage.postit.blog"
-STAGING_USER="pw_user"
-DELIVER_TO="/home/pw_user"
+
+PRODUCTION_HOSTS="postit.blog" 
+PRODUCTION_USER="pw_user" 
+DELIVER_TO="/home/pw_user/app_release" 
 
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
-  local _prod_secret_path="/home/builder/prod.secret.exs"
+  local _prod_secret_path="/home/pw_user/app_config/prod.secret.exs"
   if [ "$TARGET_MIX_ENV" = "prod" ]; then
     __sync_remote "
       ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
