@@ -20,4 +20,3 @@ before_install:
   -in deploy_travis_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host $BUILD_SERVER_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- ssh-add ./deploy_travis_rsa
