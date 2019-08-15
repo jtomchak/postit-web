@@ -11,6 +11,14 @@ addons:
   ssh_known_hosts: postit.blog
 script:
 - mix edeliver build release production
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash scripts/deploy.sh production $TRAVIS_TAG
+  on:
+    tags: true
+    all_branches: false
+    branch: master
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 notifications:
