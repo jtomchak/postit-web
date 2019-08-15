@@ -1,33 +1,36 @@
 language: elixir
 elixir:
-  - 1.8.2
+- 1.8.2
 otp_release:
-  - 22.0
+- 22.0
 cache:
   directories:
-    - _build
-    - deps
+  - _build
+  - deps
+addons:
+  ssh_known_hosts: 192.81.134.43
 jobs:
   include:
-    - stage: "Testing"
-      name: "Running all the tests"
-    - script:
-      - mix test
-    - stage: "Compile"
-      name: "Compile Postit Web App"
-    - script:
-      - mix edeliver build release --branch=BRANCH --verbose
-      - mix edeliver deploy release to production --verbose
-      - mix edeliver start production --verbose
-      - mix edeliver migrate production up --verbose
-    - deploy:
-        provider: script
-        script: bash scripts/deploy.sh
-        on:
-          branch: master
-
+  - stage: Compile
+    name: Compile Postit Web App
+  - script:
+    - mix edeliver build release --branch=BRANCH --verbose
+    - mix edeliver deploy release to production --verbose
+    - mix edeliver start production --verbose
+    - mix edeliver migrate production up --verbose
+  - deploy:
+      provider: script
+      skip_cleanup: true
+      script: bash scripts/deploy.sh
+      on:
+        branch: master
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
+- bash <(curl -s https://codecov.io/bash)
 notifications:
   email: false
+before_install:
+- openssl aes-256-cbc -K $encrypted_71b6d6e1e8cf_key -iv $encrypted_71b6d6e1e8cf_iv
+  -in deploy_travis_rsa.enc -out deploy_travis_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_travis_rsa
+- ssh-add /tmp/deploy_travis_rsa
