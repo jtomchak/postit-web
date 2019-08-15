@@ -35,6 +35,9 @@ pre_erlang_clean_compile() {
     mkdir -p priv/static # required by the phoenix.digest task
     cd assets && npm install && node node_modules/webpack/bin/webpack.js --mode production 
 
+    # jump back out 
+    cd ..
+    
     # run your custom task
     APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
   "
