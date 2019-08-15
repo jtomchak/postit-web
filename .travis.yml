@@ -15,9 +15,6 @@ jobs:
     name: Compile Postit Web App
   - script:
     - mix edeliver build release --branch=BRANCH --verbose
-    - mix edeliver deploy release to production --verbose
-    - mix edeliver start production --verbose
-    - mix edeliver migrate production up --verbose
   - deploy:
       provider: script
       skip_cleanup: true
