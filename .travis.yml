@@ -16,7 +16,7 @@ deploy:
   skip_cleanup: true
   script: bash scripts/deploy.sh production $TRAVIS_TAG
   on:
-    tags: true
+    tags: false
     all_branches: false
     branch: master
 after_success:
