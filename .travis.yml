@@ -8,13 +8,13 @@ cache:
   - _build
   - deps
 addons:
-  ssh_known_hosts: 192.81.134.43
+  ssh_known_hosts: postit.blog
 jobs:
   include:
-  - stage: Compile
-    name: Compile Postit Web App
+  - stage: Build
+    name: Build Release Postit Web App 
   - script:
-    - MIX_ENV=prod mix release
+    - mix edeliver build release production
   - deploy:
       provider: script
       skip_cleanup: true
