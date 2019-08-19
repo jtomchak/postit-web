@@ -1,7 +1,7 @@
 <section class="colums">
 <div class="column is-half is-offset-one-quarter">
   <h1><%= gettext "Welcome to %{name}!", name: "Post It" %></h1>
-  <p>A place to own your content<br/>with the goal of sharing it where you want.</p>
+  <p>A place to own your content<br/>then share it where you want.</p>
 </section>
 </div>
 
