@@ -31,8 +31,8 @@ defmodule Postit.UserManagerTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = UserManager.create_user(@valid_attrs)
+      assert {:ok, user} == Argon2.check_pass(user, "some password", hash_key: :password)
       assert user.email == "some email"
-      assert user.password == "some password"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -42,8 +42,8 @@ defmodule Postit.UserManagerTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = UserManager.update_user(user, @update_attrs)
+      assert {:ok, user} == Argon2.check_pass(user, "some updated password", hash_key: :password)
       assert user.email == "some updated email"
-      assert user.password == "some updated password"
     end
 
     test "update_user/2 with invalid data returns error changeset" do

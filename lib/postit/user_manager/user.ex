@@ -11,10 +11,10 @@ defmodule Postit.UserManager.User do
     timestamps()
   end
 
-  def changeset(%User{} = user, attrs) do
+  def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :password])
-    |> validate_required([:username, :password])
+    |> cast(attrs, [:email, :password])
+    |> validate_required([:email, :password])
     |> put_password_hash()
   end
 
@@ -25,12 +25,4 @@ defmodule Postit.UserManager.User do
   end
 
   defp put_password_hash(changeset), do: changeset
-
-  @doc false
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, [:email, :password])
-    |> validate_required([:email, :password])
-    |> unique_constraint(:email)
-  end
 end

@@ -5,7 +5,7 @@ defmodule Postit.UserManger.Guardian do
 
   # Used to encode the resource into a token
   def subject_for_token(user, _claims) do
-    {:ok, to_string(user_id)}
+    {:ok, to_string(user.id)}
   end
 
   # Used to decode the token and validate / hydrate 
