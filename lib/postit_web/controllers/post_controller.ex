@@ -5,7 +5,6 @@ defmodule PostitWeb.PostController do
   alias Postit.Posting
   alias Postit.Posting.Post
 
-  
   plug PostitWeb.Plugs.AuthenticateUser
 
   def index(conn, _params) do
@@ -19,9 +18,9 @@ defmodule PostitWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-    case post_params 
-    |> Map.put("user_id", conn.assigns.current_user.id) 
-    |> Posting.create_post do
+    case post_params
+         |> Map.put("user_id", conn.assigns.current_user.id)
+         |> Posting.create_post() do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")

@@ -29,9 +29,8 @@ config :phoenix, :json_library, Jason
 # Configures Ueberauth's Auth0 auth provider key's are in the `Mix.env().exs`
 config :ueberauth, Ueberauth,
   providers: [
-    auth0: { Ueberauth.Strategy.Auth0, []},
+    auth0: {Ueberauth.Strategy.Auth0, []}
   ]
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

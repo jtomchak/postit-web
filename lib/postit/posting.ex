@@ -30,9 +30,12 @@ defmodule Postit.Posting do
       [%Post{}, ...]
   """
   def list_posts_by_updated do
-    Repo.all(from Post,
-            order_by: [desc: :updated_at])
+    Repo.all(
+      from Post,
+        order_by: [desc: :updated_at]
+    )
   end
+
   @doc """
   Returns a list of posts by specific user_id
 
@@ -42,7 +45,7 @@ defmodule Postit.Posting do
     [%Post{}, ...]
   """
   def get_posts_by(user_id) do
-    Post |> where(user_id: ^user_id) |> Repo.all
+    Post |> where(user_id: ^user_id) |> Repo.all()
   end
 
   @doc """

@@ -1,13 +1,15 @@
 defmodule PostitWeb.AuthController do
   use PostitWeb, :controller
-  alias PostitWeb.Router.Helpers # what helpers? provides a basepath?
+  # what helpers? provides a basepath?
+  alias PostitWeb.Router.Helpers
 
-  plug Ueberauth # adding a plug? 
+  # adding a plug? 
+  plug Ueberauth
 
   alias Ueberauth.Strategy.Helpers
 
   def logout(conn, _params) do
-    conn 
+    conn
     |> put_flash(:info, "You have been logged out!")
     |> configure_session(drop: true)
     |> redirect(to: "/")
@@ -20,13 +22,15 @@ defmodule PostitWeb.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    case UserFromAuth.find_or_create(auth) do # handle ok or error from find or create I didn't see us import that ?
+    # handle ok or error from find or create I didn't see us import that ?
+    case UserFromAuth.find_or_create(auth) do
       {:ok, user} ->
-        conn 
-        |> put_flash(:info, "Successfully authenticated as "<> user.name <> ".")
+        conn
+        |> put_flash(:info, "Successfully authenticated as " <> user.name <> ".")
         |> put_session(:current_user, user)
         |> redirect(to: "/")
-      {:error, reason} -> 
+
+      {:error, reason} ->
         conn
         |> put_flash(:error, reason)
         |> redirect(to: "/")

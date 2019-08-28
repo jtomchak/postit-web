@@ -5,28 +5,35 @@ defmodule UserFromAuth do
   require Logger
   require Poison
 
-  alias Ueberauth.Auth 
+  alias Ueberauth.Auth
 
-  def find_or_create(%Auth{provider: :identity} = auth) do # pattern matching auth from the arg passed in?
+  # pattern matching auth from the arg passed in?
+  def find_or_create(%Auth{provider: :identity} = auth) do
     case validate_pass(auth.credentials) do
       :ok ->
-        {:ok, basic_info(auth)} #return is a record or a tuple?
-        {:error, reason} -> {:error, reason}
+        # return is a record or a tuple?
+        {:ok, basic_info(auth)}
+
+      {:error, reason} ->
+        {:error, reason}
     end
   end
 
-  def find_or_create(%Auth{} = auth) do # why do i have two functions one with an auth record and one without?
+  # why do i have two functions one with an auth record and one without?
+  def find_or_create(%Auth{} = auth) do
     {:ok, basic_info(auth)}
   end
 
   # Github does it this way
-  defp avatar_from_auth( %{info: %{urls: %{avatar_url: image}} }), do: image
+  defp avatar_from_auth(%{info: %{urls: %{avatar_url: image}}}), do: image
 
   # default case if nothing matches
-  defp avatar_from_auth( auth ) do
+  defp avatar_from_auth(auth) do
     Logger.warn("#{auth.provider} needs to find an avatar URL pretty please!")
-    Logger.debug(Poison.encode!(auth)) # What is poison doing?
-    nil # what is the return nil? and what on earth is defp versus def, and the 'do: image'?
+    # What is poison doing?
+    Logger.debug(Poison.encode!(auth))
+    # what is the return nil? and what on earth is defp versus def, and the 'do: image'?
+    nil
   end
 
   defp basic_info(auth) do
@@ -36,9 +43,11 @@ defmodule UserFromAuth do
   defp name_from_auth(auth) do
     if auth.info.name do
       auth.info.name
-    else 
-      name = [auth.info.first_name, auth.info.last_name]
-      |> Enum.filter(&(&1 != nil and &1 != "")) # I can understand the logic, but the detail of the '&' ?
+    else
+      name =
+        [auth.info.first_name, auth.info.last_name]
+        # I can understand the logic, but the detail of the '&' ?
+        |> Enum.filter(&(&1 != nil and &1 != ""))
 
       cond do
         length(name) == 0 -> auth.info.nickname
@@ -47,7 +56,8 @@ defmodule UserFromAuth do
     end
   end
 
-  defp validate_pass(%{other: %{password: ""}}) do # need to figure out the '%' meaning and nested {{}}
+  # need to figure out the '%' meaning and nested {{}}
+  defp validate_pass(%{other: %{password: ""}}) do
     {:error, "Password Required Please"}
   end
 
@@ -60,5 +70,4 @@ defmodule UserFromAuth do
   end
 
   defp validate_pass(_), do: {:error, "Password Required"}
-
 end

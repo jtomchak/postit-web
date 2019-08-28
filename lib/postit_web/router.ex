@@ -19,8 +19,8 @@ defmodule PostitWeb.Router do
 
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
-    post "/:provider/callback", AuthController, :callback # this last item is the function to call? 
-
+    # this last item is the function to call? 
+    post "/:provider/callback", AuthController, :callback
   end
 
   scope "/", PostitWeb do

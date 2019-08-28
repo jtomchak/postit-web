@@ -32,11 +32,12 @@ defmodule Postit.Events do
 
   """
   def list_future_events do
-    query = from e in Postit.Events.Event,
-      where: e.due >= ^DateTime.utc_now
+    query =
+      from e in Postit.Events.Event,
+        where: e.due >= ^DateTime.utc_now()
+
     Repo.all(query)
   end
-
 
   @doc """
   Gets a single event.

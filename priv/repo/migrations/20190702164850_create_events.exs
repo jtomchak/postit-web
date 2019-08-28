@@ -8,6 +8,5 @@ defmodule Postit.Repo.Migrations.CreateEvents do
 
       timestamps()
     end
-
   end
 end

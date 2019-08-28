@@ -5,6 +5,7 @@ defmodule Postit.Repo.Migrations.UpdatePostsWithUserRelationship do
     alter table("posts") do
       add :user_id, :string
     end
-  create index(:posts, [:user_id])
+
+    create index(:posts, [:user_id])
   end
 end
