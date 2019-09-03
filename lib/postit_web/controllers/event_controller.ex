@@ -4,8 +4,6 @@ defmodule PostitWeb.EventController do
   alias Postit.Events
   alias Postit.Events.Event
 
-  plug PostitWeb.Plugs.AuthenticateUser
-
   def index(conn, _params) do
     events = Events.list_events()
     render(conn, "index.html", events: events)

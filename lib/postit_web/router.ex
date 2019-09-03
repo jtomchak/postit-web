@@ -14,20 +14,20 @@ defmodule PostitWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/auth", PostitWeb do
-    pipe_through :browser
+  scope "/", PostitWeb do
+    pipe_through [:browser, PostitWeb.Plugs.GuestUser]
 
-    get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callback
-    # this last item is the function to call? 
-    post "/:provider/callback", AuthController, :callback
+    resources "/signup", UserController, only: [:create, :new]
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
   end
 
   scope "/", PostitWeb do
-    pipe_through :browser
+    pipe_through [:browser, PostitWeb.Plugs.AuthenticateUser]
+    delete "/logout", SessionController, :delete
 
     get "/", PageController, :index
-    get "/logout", AuthController, :logout
+    get "/show", PageController, :show
     resources "/events", EventController
     resources "/posts", PostController
   end

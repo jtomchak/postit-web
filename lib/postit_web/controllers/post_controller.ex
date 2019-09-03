@@ -5,8 +5,6 @@ defmodule PostitWeb.PostController do
   alias Postit.Posting
   alias Postit.Posting.Post
 
-  plug PostitWeb.Plugs.AuthenticateUser
-
   def index(conn, _params) do
     posts = Posting.get_posts_by(conn.assigns.current_user.id)
     render(conn, "index.html", posts: posts)

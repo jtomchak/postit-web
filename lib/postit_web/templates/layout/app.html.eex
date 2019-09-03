@@ -27,7 +27,7 @@
 
     <div id="navbarMenu" class="navbar-menu">
     <div class="navbar-end">
-           <%= if @current_user do %>
+           <%= if !"TED" do %>
       <div class="navbar-item">
            <a class="navbar-item is-active" href="/posts">Posts</a>
            </div>
@@ -39,7 +39,7 @@
           </div>
           <% else %>
           <div class="navbar-item">
-          <a class="button is-primary" href="/auth/auth0">
+          <a class="button is-primary" href="/login">
             Log in
           </a>
           <%end%>

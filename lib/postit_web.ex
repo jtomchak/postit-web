@@ -42,6 +42,8 @@ defmodule PostitWeb do
 
       import PostitWeb.ErrorHelpers
       import PostitWeb.Gettext
+      # check for current user signed in
+      import Postit.UserInternalAuth, only: [signed_in?: 1]
       alias PostitWeb.Router.Helpers, as: Routes
     end
   end

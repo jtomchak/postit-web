@@ -47,8 +47,8 @@ defmodule Postit.MixProject do
       {:distillery, "~> 2.0"},
       {:ueberauth, "~> 0.6.1"},
       {:ueberauth_auth0, "~> 0.3.0"},
-      {:guardian, "~> 1.2"},
-      {:argon2_elixir, "~> 2.0"},
+      {:comeonin, "~> 5.0"},
+      {:bcrypt_elixir, "~> 2.0"},
       {:poison, "~> 4.0"}
     ]
   end
