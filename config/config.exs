@@ -32,11 +32,6 @@ config :ueberauth, Ueberauth,
     auth0: {Ueberauth.Strategy.Auth0, []}
   ]
 
-# Configure for Guardian
-config :postit, Postit.UserManager.Guardian,
-  issuer: "postit",
-  secrect_key: "4mY2w7EMCq+2ffOZh6R2d0waf/FV/8H06pfyAANc4DEcxvBSF/5VTPm7eQ3sIHlo"
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

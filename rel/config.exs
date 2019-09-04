@@ -8,14 +8,13 @@
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    # This sets the default release built by `mix release`
-    default_release: :default,
-    # This sets the default environment used by `mix release`
-    default_environment: Mix.env()
+  # This sets the default release built by `mix release`
+  default_release: :default,
+  # This sets the default environment used by `mix release`
+  default_environment: Mix.env()
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/config/distillery.html
-
 
 # You may define one or more environments in this file,
 # an environment's settings will override those of a release
@@ -29,17 +28,28 @@ environment :dev do
   # It is recommended that you build with MIX_ENV=prod and pass
   # the --env flag to Distillery explicitly if you want to use
   # dev mode.
-  set dev_mode: true
-  set include_erts: false
-  set cookie: :"J=;}|=QgpgwKU`m~=N/cG@WmrC;PCs)0iC/7U820jMf@KlJlb;v()&:UjmU?ss>p"
+  set(dev_mode: true)
+  set(include_erts: false)
+  set(cookie: :"J=;}|=QgpgwKU`m~=N/cG@WmrC;PCs)0iC/7U820jMf@KlJlb;v()&:UjmU?ss>p")
 end
 
 environment :prod do
-  set include_erts: true
-  set include_src: false
-  set post_start_hooks: "rel/hooks/post_start"
-  set cookie: :"*p^BTu.Ly3<>SPo]B>x4PLM;/2q*bR^)a[PFY!|_ikDKGijzZ*NlBY[ow}u6M|D~"
-  set vm_args: "rel/vm.args"
+  set(include_erts: true)
+  set(include_src: false)
+  set(post_start_hooks: "rel/hooks/post_start")
+  set(cookie: :"*p^BTu.Ly3<>SPo]B>x4PLM;/2q*bR^)a[PFY!|_ikDKGijzZ*NlBY[ow}u6M|D~")
+
+  set(
+    config_providers: [
+      {Distillery.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
+    ]
+  )
+
+  set(
+    overlays: [
+      {:copy, "rel/config/config.exs", "etc/config.exs"}
+    ]
+  )
 end
 
 # You may define one or more releases in this file.
@@ -48,12 +58,17 @@ end
 # will be used by default
 
 release :postit do
-  set version: current_version(:postit)
-  set applications: [
-    :runtime_tools
-  ]
-  set commands: [
-    "migrate": "rel/commands/migrate.sh"
-  ]
-end
+  set(version: current_version(:postit))
 
+  set(
+    applications: [
+      :runtime_tools
+    ]
+  )
+
+  set(
+    commands: [
+      migrate: "rel/commands/migrate.sh"
+    ]
+  )
+end
