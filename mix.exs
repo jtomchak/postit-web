@@ -48,7 +48,8 @@ defmodule Postit.MixProject do
       {:ueberauth_auth0, "~> 0.3.0"},
       {:comeonin, "~> 5.0"},
       {:bcrypt_elixir, "~> 2.0"},
-      {:poison, "~> 4.0"}
+      {:poison, "~> 4.0"},
+      {:slugger, "~> 0.3.0"}
     ]
   end
 

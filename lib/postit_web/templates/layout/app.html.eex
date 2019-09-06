@@ -27,7 +27,7 @@
 
     <div id="navbarMenu" class="navbar-menu">
     <div class="navbar-end">
-           <%= if !"TED" do %>
+           <%= if @user_signed_in? do %>
       <div class="navbar-item">
            <a class="navbar-item is-active" href="/posts">Posts</a>
            </div>

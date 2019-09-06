@@ -1,6 +1,8 @@
 defmodule Postit.UserManager.User do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Postit.Posting.Post
   alias Postit.UserManager.{User, Encryption}
 
   alias Argon2
@@ -12,6 +14,7 @@ defmodule Postit.UserManager.User do
     # VIRTUAL FIELDS
     field :plain_text_password, :string, virtual: true
 
+    has_many :posts, Post
     timestamps()
   end
 

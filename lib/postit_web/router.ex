@@ -8,6 +8,7 @@ defmodule PostitWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PostitWeb.Plugs.SetCurrentUser
   end
 
   pipeline :api do
@@ -17,6 +18,7 @@ defmodule PostitWeb.Router do
   scope "/", PostitWeb do
     pipe_through [:browser, PostitWeb.Plugs.GuestUser]
 
+    get "/", PageController, :index
     resources "/signup", UserController, only: [:create, :new]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -24,9 +26,10 @@ defmodule PostitWeb.Router do
 
   scope "/", PostitWeb do
     pipe_through [:browser, PostitWeb.Plugs.AuthenticateUser]
-    delete "/logout", SessionController, :delete
-
     get "/", PageController, :index
+
+    get "/logout", SessionController, :delete
+
     get "/show", PageController, :show
     resources "/events", EventController
     resources "/posts", PostController

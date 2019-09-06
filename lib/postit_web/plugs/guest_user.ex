@@ -7,7 +7,7 @@ defmodule PostitWeb.Plugs.GuestUser do
   def call(conn, _opts) do
     if get_session(conn, :current_user_id) do
       conn
-      |> redirect(to: PostitWeb.Router.Helpers.page_path(conn, :index))
+      |> redirect(to: PostitWeb.Router.Helpers.page_path(conn, :show))
       |> halt()
     end
 
