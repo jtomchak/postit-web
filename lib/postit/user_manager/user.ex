@@ -10,6 +10,8 @@ defmodule Postit.UserManager.User do
   schema "users" do
     field :email, :string
     field :password, :string
+    field :username, :string, null: false
+    field :fullname, :string, null: false
 
     # VIRTUAL FIELDS
     field :plain_text_password, :string, virtual: true
@@ -20,7 +22,7 @@ defmodule Postit.UserManager.User do
 
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :plain_text_password])
+    |> cast(attrs, [:email, :plain_text_password, :username, :fullname])
     |> validate_required([:email])
     |> validate_length(:plain_text_password, min: 6)
     |> validate_length(:email, min: 3)

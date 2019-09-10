@@ -22,6 +22,18 @@ defmodule Postit.Posting do
   end
 
   @doc """
+  retuns all posts by username ordered by latest first
+
+  ## Examples
+
+        iex> list_posts_by_username("Jesse")
+        [%Post{}, ...]
+  """
+  def list_posts_by_username(username) do
+    Post |> where(username: ^username) |> Repo.all()
+  end
+
+  @doc """
   returns all posts ordered by data published
 
     ## Examples
@@ -41,7 +53,7 @@ defmodule Postit.Posting do
 
   ## Examples
 
-    iex> get_posts_by(user_id)
+    iex> get_posts_by(12)
     [%Post{}, ...]
   """
   def get_posts_by(user_id) do

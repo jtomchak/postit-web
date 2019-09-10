@@ -36,7 +36,9 @@ defmodule PostitWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PostitWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", PostitWeb.API, as: :api do
+    pipe_through :api
+    get "/users/:username", UserController, :index
+    get "/users/:username/posts", PostController, :index
+  end
 end
