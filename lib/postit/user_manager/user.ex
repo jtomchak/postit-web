@@ -10,7 +10,7 @@ defmodule Postit.UserManager.User do
   schema "users" do
     field :email, :string
     field :password, :string
-    field :username, :string, null: false
+    field :username, :string, unique: true, null: false
     field :fullname, :string, null: false
 
     # VIRTUAL FIELDS

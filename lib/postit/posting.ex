@@ -30,7 +30,13 @@ defmodule Postit.Posting do
         [%Post{}, ...]
   """
   def list_posts_by_username(username) do
-    Post |> where(username: ^username) |> Repo.all()
+    query =
+      from p in Post,
+        where: p.username == ^username,
+        order_by: [desc: :updated_at],
+        select: p
+
+    Repo.all(query)
   end
 
   @doc """
