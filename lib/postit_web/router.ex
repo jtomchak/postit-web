@@ -39,6 +39,6 @@ defmodule PostitWeb.Router do
   scope "/api/v1", PostitWeb.API, as: :api do
     pipe_through :api
     get "/users/:username", UserController, :index
-    get "/users/:username/posts", PostController, :index
+    get "/users/:username/posts", PostController, :show
   end
 end

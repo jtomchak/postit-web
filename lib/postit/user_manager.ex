@@ -37,8 +37,11 @@ defmodule Postit.UserManager do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
-  def username_with_posts(username),
-    do: Repo.all(from u in User, where: u.username == ^username, select: u, preload: [:posts])
+  @doc """
+  get all posts preloaded with the user from the username match
+  """
+  def username_with_posts!(username),
+    do: Repo.one(from u in User, where: u.username == ^username, select: u, preload: [:posts])
 
   @doc """
   Creates a user.
