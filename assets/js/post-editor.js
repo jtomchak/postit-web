@@ -1,20 +1,29 @@
-import Quill from 'quill/core';
-
-import Toolbar from 'quill/modules/toolbar';
-import Snow from 'quill/themes/snow';
-
-import Bold from 'quill/formats/bold';
-import Italic from 'quill/formats/italic';
-import Header from 'quill/formats/header';
+import CodeMirror from "codemirror/lib/codemirror";
+import gfm from 'codemirror/mode/gfm/gfm'
 
 
-Quill.register({
-  'modules/toolbar': Toolbar,
-  'themes/snow': Snow,
-  'formats/bold': Bold,
-  'formats/italic': Italic,
-  'formats/header': Header
-});
+const postEditor = CodeMirror.fromTextArea(document.getElementById('post_content'), {
+  autofocus: true,
+  lineWrapping: true,
+  mode: {
+    name: 'gfm',
+  }
+})
 
+postEditor.on('update', () => {
+  const postValue = postEditor.getValue();
+  updateCharCountElement(postValue.length)
+  updateWordCountElement(wordCount(postValue))
+})
 
-export default Quill;
+function wordCount(str) {
+  return str.split(' ').filter(a => a.length > 0).length
+}
+
+function updateWordCountElement(wordCount) {
+  document.querySelector("#word-count.level-item").textContent = wordCount;
+}
+
+function updateCharCountElement(charCount) {
+  document.querySelector("#char-count.level-item").textContent = charCount;
+}

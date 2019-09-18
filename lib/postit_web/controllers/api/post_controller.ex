@@ -10,4 +10,8 @@ defmodule PostitWeb.API.PostController do
 
     render(conn, "show.json", user: user)
   end
+
+  def create(conn, params) do
+    json(conn, %{body: params})
+  end
 end

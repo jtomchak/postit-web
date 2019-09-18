@@ -13,19 +13,14 @@ module.exports = (env, options) => ({
     ]
   },
   entry: {
-    "./js/app.js": ["./js/app.js"].concat(glob.sync("./vendor/**/*.js"))
+    app: ["./js/app.js"].concat(glob.sync("./vendor/**/*.js")),
+    editor: "./js/post-editor.js"
   },
   output: {
-    filename: "app.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "../priv/static/js")
   },
-  resolve: {
-    alias: {
-      'parchment': path.resolve(__dirname, 'node_modules/parchment/src/parchment.ts'),
-      'quill$': path.resolve(__dirname, 'node_modules/quill/quill.js'),
-    },
-    extensions: ['.js', '.ts', '.svg']
-  },
+  resolve: {},
   module: {
     rules: [
       {
@@ -64,7 +59,7 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+    new MiniCssExtractPlugin({ filename: "../css/[name].css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }])
   ]
 });

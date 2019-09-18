@@ -13,6 +13,7 @@ defmodule PostitWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
   end
 
   scope "/", PostitWeb do
@@ -40,5 +41,10 @@ defmodule PostitWeb.Router do
     pipe_through :api
     get "/users/:username", UserController, :index
     get "/users/:username/posts", PostController, :show
+  end
+
+  scope "/api/v1", PostitWeb.API, as: :api do
+    pipe_through [:api, PostitWeb.Plugs.AuthenticateUser]
+    resources "/posts", PostController
   end
 end

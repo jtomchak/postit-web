@@ -10,18 +10,14 @@ import css from "../css/app.scss";
 // Import dependencies
 //
 import "phoenix_html";
-import Quill from './post-editor'
 
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-new Quill('#post-editor', {
-  modules: { toolbar: true },
-  theme: 'snow'
-});
 
+// Bluma Hamburger Menu
 (function () {
   var burger = document.querySelector(".burger");
   var nav = document.querySelector("#" + burger.dataset.target);

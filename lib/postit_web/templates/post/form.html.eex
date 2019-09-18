@@ -4,21 +4,20 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
-
-  <%= label f, :content %>
-  <%= textarea f, :content %>
+  <%= textarea f, :content, class: "invisible" %>
   <%= error_tag f, :content %>
 
-<!-- Create the editor container -->
-<div id="post-editor">
-  <p>Hello World!</p>
-</div>
-
-  <div>
-    <%= submit "Save" %>
+<%# Main Level Container %>
+  <div class="level is-mobile">
+  <%# Left Side %>
+  <div class="level-left">
+  <span class="level-item" id="char-count"></span>
+  <span class="level-item" id="word-count"></span>
+  </div>
+  <%# Right Side %>
+  <div class="level-right">
+    <p class="level-item"><%= submit "Publish"  %></p>
+  </div>
   </div>
 <% end %>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/editor.js") %>"></script>
