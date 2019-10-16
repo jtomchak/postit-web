@@ -49,7 +49,8 @@ defmodule Postit.MixProject do
       {:comeonin, "~> 5.0"},
       {:bcrypt_elixir, "~> 2.0"},
       {:poison, "~> 4.0"},
-      {:slugger, "~> 0.3.0"}
+      {:slugger, "~> 0.3.0"},
+      {:earmark, "~> 1.4"}
     ]
   end
 
