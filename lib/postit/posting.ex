@@ -63,7 +63,7 @@ defmodule Postit.Posting do
     [%Post{}, ...]
   """
   def get_posts_by(user_id) do
-    Post |> where(user_id: ^user_id) |> Repo.all()
+    Repo.all(from Post, where: [user_id: ^user_id], order_by: [desc: :updated_at])
   end
 
   @doc """
