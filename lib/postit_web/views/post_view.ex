@@ -1,6 +1,9 @@
 defmodule PostitWeb.PostView do
   use PostitWeb, :view
 
-  def render("post.json", %{post: post}) do
+  def markdown(body) do
+    body
+    |> Earmark.as_html!()
+    |> raw
   end
 end
