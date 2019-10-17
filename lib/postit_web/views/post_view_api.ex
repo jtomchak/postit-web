@@ -17,6 +17,7 @@ defmodule PostitWeb.API.PostView do
 
   def render("post.json", %{post: post}) do
     %{
+      id: post.id,
       title: post.title,
       content_html: transform_html(post.content),
       createdAt: post.inserted_at,
