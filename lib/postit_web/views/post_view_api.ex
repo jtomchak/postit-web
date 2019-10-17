@@ -1,5 +1,6 @@
 defmodule PostitWeb.API.PostView do
   use PostitWeb, :view
+  import Postit.Markdown
   require Logger
 
   def render("show.json", %{user: user}) do
@@ -15,6 +16,11 @@ defmodule PostitWeb.API.PostView do
   end
 
   def render("post.json", %{post: post}) do
-    %{title: post.title, content: post.content, createdAt: post.inserted_at, slug: post.slug}
+    %{
+      title: post.title,
+      content_html: transform_html(post.content),
+      createdAt: post.inserted_at,
+      slug: post.slug
+    }
   end
 end
