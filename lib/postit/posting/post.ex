@@ -2,6 +2,7 @@ defmodule Postit.Posting.Post do
   use Ecto.Schema
   import Ecto.Changeset
   require Slugger
+  require Logger
 
   alias Postit.UserManager.User
 
@@ -29,11 +30,28 @@ defmodule Postit.Posting.Post do
 
   # Private
   defp process_slug(%Ecto.Changeset{valid?: validity, changes: %{title: title}} = changeset) do
+    Logger.debug("title ${inspect(title)}")
+
     case validity do
       true -> put_change(changeset, :slug, Slugger.slugify_downcase(title))
       false -> changeset
     end
   end
 
+  defp process_slug(%Ecto.Changeset{valid?: validity, changes: %{content: content}} = changeset) do
+    Logger.debug("content ${inspect(content)}")
+
+    case validity do
+      true -> put_change(changeset, :slug, Slugger.slugify_downcase(generate_slug(content)))
+      false -> changeset
+    end
+  end
+
   defp process_slug(changeset), do: changeset
+
+  # With no title the slug will be the first 3 words of the post
+  defp generate_slug(content) do
+    content_list = String.split(content)
+    Enum.join(Enum.slice(content_list, 0..2), " ")
+  end
 end
