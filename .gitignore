@@ -37,3 +37,6 @@ npm-debug.log
 /priv/static/
 .deliver/releases/
 .elixir_ls/
+
+# Dev and other env dependencies 
+.env*
