@@ -30,6 +30,10 @@ config :postit, PostitWeb.Endpoint,
     ]
   ]
 
+config :postit, :config,
+  codefresh_auth_token: System.get_env("CODEFRESH_AUTH_TOKEN"),
+  codefresh_pipeline_id: System.get_env("CODEFRESH_PIPELINE_ID")
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
