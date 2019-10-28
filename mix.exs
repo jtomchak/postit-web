@@ -20,7 +20,7 @@ defmodule Postit.MixProject do
   def application do
     [
       mod: {Postit.Application, []},
-      extra_applications: [:ueberauth, :ueberauth_auth0, :logger, :runtime_tools]
+      extra_applications: [:ueberauth, :ueberauth_auth0, :httpoison, :logger, :runtime_tools]
     ]
   end
 
@@ -50,7 +50,8 @@ defmodule Postit.MixProject do
       {:bcrypt_elixir, "~> 2.0"},
       {:poison, "~> 4.0"},
       {:slugger, "~> 0.3.0"},
-      {:earmark, "~> 1.4"}
+      {:earmark, "~> 1.4"},
+      {:httpoison, "~> 1.6"}
     ]
   end
 
