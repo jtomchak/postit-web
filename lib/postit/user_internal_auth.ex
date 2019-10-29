@@ -12,8 +12,6 @@ defmodule Postit.UserInternalAuth do
   end
 
   defp authenticated(user, plain_text_password) do
-    Logger.info("Authenicated check: #{inspect({user})},  #{inspect(plain_text_password)}")
-
     if user do
       {:ok, authenticated_user} = Encryption.validate_password(user, plain_text_password)
       authenticated_user.email == user.email
