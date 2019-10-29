@@ -30,8 +30,6 @@ defmodule Postit.Posting.Post do
 
   # Private
   defp process_slug(%Ecto.Changeset{valid?: validity, changes: %{title: title}} = changeset) do
-    Logger.debug("title ${inspect(title)}")
-
     case validity do
       true -> put_change(changeset, :slug, Slugger.slugify_downcase(title))
       false -> changeset
@@ -39,8 +37,6 @@ defmodule Postit.Posting.Post do
   end
 
   defp process_slug(%Ecto.Changeset{valid?: validity, changes: %{content: content}} = changeset) do
-    Logger.debug("content ${inspect(content)}")
-
     case validity do
       true -> put_change(changeset, :slug, Slugger.slugify_downcase(generate_slug(content)))
       false -> changeset
