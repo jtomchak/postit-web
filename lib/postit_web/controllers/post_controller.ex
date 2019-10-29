@@ -4,6 +4,7 @@ defmodule PostitWeb.PostController do
 
   alias Postit.Posting
   alias Postit.Posting.Post
+  alias Postit.Posting.PostService
 
   def index(conn, _params) do
     posts = Posting.get_posts_by(conn.assigns.current_user.id)
@@ -18,7 +19,8 @@ defmodule PostitWeb.PostController do
   def create(conn, %{"post" => post_params}) do
     case post_params
          |> Map.put("user_id", conn.assigns.current_user.id)
-         |> Posting.create_post() do
+         |> Map.put("username", conn.assigns.current_user.username)
+         |> PostService.create_post() do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
