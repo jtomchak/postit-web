@@ -162,10 +162,12 @@ defmodule Postit.Posting do
     #      date_add(d.updated_at, -row_number() |> over(order_by: d.updated_at), "day"),
     #      d.updated_at}
     group_dates =
-      from d in dates,
+      from(d in dates,
         select:
           {row_number() |> over(order_by: d.updated_at),
-           type(fragment(date_add(d.updated_at, -1, "day")), :naive_datetime), d.updated_at}
+           datetime_add(d.updated_at, (row_number() |> over(order_by: d.updated_at)) * -1, "day"),
+           d.updated_at}
+      )
 
     query = Repo.all(group_dates)
   end
