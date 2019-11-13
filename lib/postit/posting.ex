@@ -146,4 +146,27 @@ defmodule Postit.Posting do
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
   end
+
+  def streaks_of_post(user_id) do
+    dates =
+      from(p in Post,
+        distinct: [desc: p.updated_at],
+        order_by: [p.updated_at]
+      )
+
+    # -ROW_NUMBER() OVER (ORDER BY date), date
+    # group_dates =
+    # from d in dates,
+    #   select:
+    #     {row_number() |> over(order_by: d.updated_at),
+    #      date_add(d.updated_at, -row_number() |> over(order_by: d.updated_at), "day"),
+    #      d.updated_at}
+    group_dates =
+      from d in dates,
+        select:
+          {row_number() |> over(order_by: d.updated_at),
+           type(fragment(date_add(d.updated_at, -1, "day")), :naive_datetime), d.updated_at}
+
+    query = Repo.all(group_dates)
+  end
 end
