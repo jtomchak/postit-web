@@ -155,7 +155,7 @@ defmodule Postit.Posting do
       )
 
     group_dates =
-      from(d in dates,
+      from(d in subquery(dates),
         select: %{
           rn: row_number() |> over(order_by: fragment("?::date", d.updated_at)),
           # datetime_add(d.updated_at, (row_number() |> over(order_by: d.updated_at)) * -1, "day"),
