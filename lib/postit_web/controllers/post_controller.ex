@@ -8,7 +8,20 @@ defmodule PostitWeb.PostController do
 
   def index(conn, _params) do
     posts = Posting.get_posts_by(conn.assigns.current_user.id)
-    render(conn, "index.html", posts: posts)
+
+    data = %{
+      posts: posts,
+      active_streak: active_streak(conn.assigns.current_user.id)
+    }
+
+    render(conn, "index.html", data)
+  end
+
+  # Enum.filter(map, fn {k, v} -> k == :a  end)
+  # Filter list by active streak 
+  # Take first of list handle error
+  defp active_streak(user_id) do
+    Postit.Posting.streaks_of_post(20) |> Enum.find(fn s -> s.active == false end)
   end
 
   def new(conn, _params) do
