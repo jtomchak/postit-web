@@ -150,25 +150,36 @@ defmodule Postit.Posting do
   def streaks_of_post(user_id) do
     dates =
       from(p in Post,
-        distinct: [desc: p.updated_at],
-        order_by: [p.updated_at]
+        distinct: [desc: fragment("?::date", p.updated_at)],
+        where: p.user_id == ^user_id
       )
 
-    # -ROW_NUMBER() OVER (ORDER BY date), date
-    # group_dates =
-    # from d in dates,
-    #   select:
-    #     {row_number() |> over(order_by: d.updated_at),
-    #      date_add(d.updated_at, -row_number() |> over(order_by: d.updated_at), "day"),
-    #      d.updated_at}
     group_dates =
       from(d in dates,
-        select:
-          {row_number() |> over(order_by: d.updated_at),
-           datetime_add(d.updated_at, (row_number() |> over(order_by: d.updated_at)) * -1, "day"),
-           d.updated_at}
+        select: %{
+          rn: row_number() |> over(order_by: fragment("?::date", d.updated_at)),
+          # datetime_add(d.updated_at, (row_number() |> over(order_by: d.updated_at)) * -1, "day"),
+          grp:
+            fragment(
+              "? + -ROW_NUMBER() OVER (ORDER BY ?) * INTERVAL'1 day'",
+              fragment("?::date", d.updated_at),
+              fragment("?::date", d.updated_at)
+            ),
+          date: fragment("?::date", d.updated_at)
+        }
       )
 
-    query = Repo.all(group_dates)
+    streaks =
+      from(g in subquery(group_dates),
+        select: %{
+          consecutive_days: count(),
+          start_date: min(g.date),
+          end_date: max(g.date)
+        },
+        group_by: fragment("grp HAVING COUNT(*) > 1"),
+        order_by: fragment("1 DESC, 2 DESC")
+      )
+
+    Repo.all(streaks)
   end
 end
