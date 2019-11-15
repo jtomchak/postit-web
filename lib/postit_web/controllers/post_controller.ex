@@ -17,11 +17,11 @@ defmodule PostitWeb.PostController do
     render(conn, "index.html", data)
   end
 
-  # Enum.filter(map, fn {k, v} -> k == :a  end)
-  # Filter list by active streak 
-  # Take first of list handle error
+  @doc """
+      Fetch list of user streaks, return active streak or nil
+  """
   defp active_streak(user_id) do
-    Postit.Posting.streaks_of_post(20) |> Enum.find(fn s -> s.active == false end)
+    Postit.Posting.streaks_of_post(user_id) |> Enum.find(fn s -> s.active == true end)
   end
 
   def new(conn, _params) do
