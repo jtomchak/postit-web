@@ -5,6 +5,7 @@ defmodule Postit.Posting.Post do
   require Logger
 
   alias Postit.UserManager.User
+  @timestamps_opts [type: :utc_datetime_usec]
 
   # TODO: what is `@derive`
   # @derive {Pheonix.Param, key: :slug}
@@ -13,7 +14,8 @@ defmodule Postit.Posting.Post do
     field :content, :string
     field :title, :string
     field :published, :boolean, default: false
-    field :slug, :string, unique: true
+    field :slug, :string
+    field :published_at, :utc_datetime_usec
 
     belongs_to :user, User
 

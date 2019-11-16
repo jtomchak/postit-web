@@ -13,10 +13,11 @@
   <div class="level-left">
   <span class="level-item" id="char-count"></span>
   <span class="level-item" id="word-count"></span>
+  <p class="level-item"><%= submit "Save & Exit", name: "publish_type", value: "draft" %></p>
   </div>
   <%# Right Side %>
   <div class="level-right">
-    <p class="level-item"><%= submit "Publish"  %></p>
+    <p class="level-item"><%= submit "Publish",  name: "publish_type", value: "published" %></p>
   </div>
   </div>
 <% end %>

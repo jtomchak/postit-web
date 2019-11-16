@@ -30,9 +30,13 @@ defmodule PostitWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
+    Logger.info("the conn? #{inspect(conn.body_params["publish_type"])}")
+    is_published = if conn.body_params["publish_type"] == "draft", do: false, else: true
+
     case post_params
          |> Map.put("user_id", conn.assigns.current_user.id)
          |> Map.put("username", conn.assigns.current_user.username)
+         |> Map.put("published", is_published)
          |> PostService.create_post() do
       {:ok, post} ->
         conn
