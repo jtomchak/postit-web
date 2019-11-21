@@ -59,7 +59,7 @@ defmodule Postit.MixProject do
       {:slugger, "~> 0.3.0"},
       {:earmark, "~> 1.4"},
       {:httpoison, "~> 1.6"},
-      {:timex, "~> 3.6.1"},
+      {:timex, "~> 3.6.1"}
     ]
   end
 

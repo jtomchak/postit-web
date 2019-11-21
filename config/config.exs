@@ -21,6 +21,9 @@ config :postit, PostitWeb.Endpoint,
   render_errors: [view: PostitWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Postit.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# Actual Timezones
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
