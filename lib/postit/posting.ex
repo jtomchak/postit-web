@@ -174,7 +174,7 @@ defmodule Postit.Posting do
           consecutive_days: count(),
           start_date: min(g.date),
           end_date: max(g.date),
-          active: fragment("current_date") < max(g.date) + 1
+          active: fragment("current_date") <= max(g.date) + 1
         },
         group_by: fragment("grp HAVING COUNT(*) > 1"),
         order_by: fragment("1 DESC, 2 DESC")
