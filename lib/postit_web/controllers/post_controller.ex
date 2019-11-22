@@ -30,14 +30,15 @@ defmodule PostitWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-    usertimezone = Timex.now(conn.cookies["publish_timezone"])
+    user_date_time = Timex.now(conn.cookies["publish_timezone"])
     is_published = if conn.body_params["publish_type"] == "draft", do: false, else: true
+    published_at = if is_published, do: user_date_time, else: nil
 
     case post_params
          |> Map.put("user_id", conn.assigns.current_user.id)
          |> Map.put("username", conn.assigns.current_user.username)
          |> Map.put("published", is_published)
-         |> Map.put("published_at", usertimezone)
+         |> Map.put("published_at", published_at)
          |> PostService.create_post() do
       {:ok, post} ->
         conn
