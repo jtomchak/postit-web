@@ -150,22 +150,21 @@ defmodule Postit.Posting do
   def streaks_of_post(user_id) do
     dates =
       from(p in Post,
-        distinct: [desc: fragment("?::date", p.updated_at)],
+        distinct: [desc: fragment("?::date", p.published_at)],
         where: p.user_id == ^user_id
       )
 
     group_dates =
       from(d in subquery(dates),
         select: %{
-          rn: row_number() |> over(order_by: fragment("?::date", d.updated_at)),
-          # datetime_add(d.updated_at, (row_number() |> over(order_by: d.updated_at)) * -1, "day"),
+          rn: row_number() |> over(order_by: fragment("?::date", d.published_at)),
           grp:
             fragment(
               "? + -ROW_NUMBER() OVER (ORDER BY ?) * INTERVAL'1 day'",
-              fragment("?::date", d.updated_at),
-              fragment("?::date", d.updated_at)
+              fragment("?::date", d.published_at),
+              fragment("?::date", d.published_at)
             ),
-          date: fragment("?::date", d.updated_at)
+          date: fragment("?::date", d.published_at)
         }
       )
 
