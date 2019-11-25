@@ -4,12 +4,13 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-  <div id="postit-editor">
-  <div id="postit-md-wrapper" ></div>
+  <div class="columns is-fullheight">
+  <div id="postit-md-wrapper" class="column postit-wrapper" ></div>
   <%= textarea f, :content, class: "invisible" %>
   </div>  
 
   <%= error_tag f, :content %>
+  </div>
 <input type="hidden" id="timezone" name="published_timezone" value="">
 <%# Main Level Container %>
   <div class="level is-mobile">
