@@ -4,6 +4,8 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
+  <div id="postit-editor"></div>
+  <div id="content" style="display: none;"></div>
   <%= textarea f, :content, class: "invisible" %>
   <%= error_tag f, :content %>
 <input type="hidden" id="timezone" name="published_timezone" value="">
@@ -22,6 +24,7 @@
   </div>
 <% end %>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/editor.js") %>"></script>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/postit_editor.js") %>"></script>
 <script>(function setTimezone(){
   return document.cookie = "publish_timezone="+ Intl.DateTimeFormat().resolvedOptions().timeZone;
 })()</script>
