@@ -3,7 +3,7 @@ defmodule Postit.UserManager.User do
   import Ecto.Changeset
 
   alias Postit.Posting.Post
-  alias Postit.UserManager.{User, Encryption}
+  alias Postit.UserManager.{User, Encryption, AuthToken}
 
   alias Argon2
 
@@ -17,6 +17,8 @@ defmodule Postit.UserManager.User do
     field :plain_text_password, :string, virtual: true
 
     has_many :posts, Post
+    # add the association among the rest of the schema
+    has_many :auth_tokens, AuthToken
     timestamps()
   end
 

@@ -27,3 +27,8 @@ import "phoenix_html";
     nav.classList.toggle("is-active");
   });
 })();
+
+// Add timezone to cookie
+(function setTimezone() {
+  return document.cookie = "publish_timezone=" + Intl.DateTimeFormat().resolvedOptions().timeZone;
+})()
