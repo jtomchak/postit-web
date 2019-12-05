@@ -20,6 +20,9 @@ defmodule PostitWeb.Router do
     pipe_through [:browser, PostitWeb.Plugs.GuestUser]
 
     get "/", PageController, :index
+    get "/signin/:token", SessionController, :show, as: :signin
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
+
     resources "/signup", UserController, only: [:create, :new]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -29,11 +32,9 @@ defmodule PostitWeb.Router do
     pipe_through [:browser, PostitWeb.Plugs.AuthenticateUser]
     get "/", PageController, :index
 
-    get "/logout", SessionController, :delete
-
     get "/show", PageController, :show
-    resources "/events", EventController
     resources "/posts", PostController
+    get "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
