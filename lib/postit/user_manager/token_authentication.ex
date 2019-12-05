@@ -7,6 +7,7 @@ defmodule Postit.UserManager.TokenAuthentication do
   alias Postit.Repo
   alias Postit.UserManager.{User, AuthToken}
   alias Phoenix.Token
+  alias PostitWeb.Endpoint
 
   # token valid for 30 minutes / 1800 seconds
   @token_max_age 1_800

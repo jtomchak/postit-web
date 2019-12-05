@@ -26,7 +26,8 @@ defmodule Postit.MixProject do
         :httpoison,
         :logger,
         :runtime_tools,
-        :timex
+        :timex,
+        :bamboo
       ]
     ]
   end
@@ -59,7 +60,9 @@ defmodule Postit.MixProject do
       {:slugger, "~> 0.3.0"},
       {:earmark, "~> 1.4"},
       {:httpoison, "~> 1.6"},
-      {:timex, "~> 3.6.1"}
+      {:timex, "~> 3.6.1"},
+      {:bamboo, "~> 1.3"},
+      {:bamboo_smtp, "~> 2.1"}
     ]
   end
 

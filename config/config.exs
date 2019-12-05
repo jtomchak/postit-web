@@ -39,6 +39,11 @@ config :ueberauth, Ueberauth,
     auth0: {Ueberauth.Strategy.Auth0, []}
   ]
 
+# Bamboo SMTP Email configuration
+config :my_app, Postit.Mailer,
+  adapter: Bamboo.MandrillAdapter,
+  api_key: System.get_env("MANDRILL_KEY")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
