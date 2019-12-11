@@ -16,7 +16,6 @@ config :postit, :config,
 
 # Configures the endpoint
 config :postit, PostitWeb.Endpoint,
-  url: [host: "localhost"],
   secret_key_base: "DCrs5e9HHwyuWRl8ez3AetNGWyJsqzheDwG+Jh14ZQoKuQ1CzsmSQjA2NwcrrZgL",
   render_errors: [view: PostitWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Postit.PubSub, adapter: Phoenix.PubSub.PG2]
