@@ -10,14 +10,12 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :postit, PostitWeb.Endpoint,
-  http: [port: 4000],
-  # url: [host: "localhost", port: System.get_env("PORT") || 4000], # This is critical for ensuring web-sockets properly authorize.
+  url: [host: "postit.blog", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: false,
   server: true,
   root: ".",
-  version: Application.spec(:postit, :vsn),
-  url: [host: "postit.blog", port: 80]
+  version: Application.spec(:postit, :vsn)
 
 # force_ssl: [rewrite_on: [:x_forwarded_proto]]
 # Do not print debug messages in production
