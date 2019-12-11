@@ -4,7 +4,7 @@
       <div class='card-content'>
         <span class='card-title'>LOGIN</span>
           <div class='row card-form'>
-          <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+          <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session], fn f -> %>
             <div class="form-group">
               <%= label f, :email, class: "control-label" %>
               <%= text_input f, :email, class: "form-control", autofocus: true %>

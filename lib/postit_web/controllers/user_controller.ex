@@ -18,7 +18,7 @@ defmodule PostitWeb.UserController do
 
         conn
         |> put_flash(:info, "You signed up successfully. Please check your email.")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.user_path(conn, :show))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

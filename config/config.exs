@@ -40,7 +40,7 @@ config :ueberauth, Ueberauth,
   ]
 
 # Bamboo SMTP Email configuration
-config :my_app, Postit.Mailer,
+config :postit, Postit.Mailer,
   adapter: Bamboo.MandrillAdapter,
   api_key: System.get_env("MANDRILL_KEY")
 

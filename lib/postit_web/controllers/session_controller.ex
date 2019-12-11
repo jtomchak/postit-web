@@ -2,7 +2,7 @@ defmodule PostitWeb.SessionController do
   use PostitWeb, :controller
 
   alias Postit.UserInternalAuth
-  alias Postit.TokenAuthentication
+  alias Postit.UserManager.TokenAuthentication
   alias Postit.Repo
 
   @doc """
@@ -23,7 +23,7 @@ defmodule PostitWeb.SessionController do
     # user might not exist.
     conn
     |> put_flash(:info, "We have sent you a link for signing in via email to #{email}.")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: Routes.post_path(conn, :index))
   end
 
   @doc """
@@ -38,12 +38,12 @@ defmodule PostitWeb.SessionController do
         |> put_session(:user_id, user.id)
         |> configure_session(renew: true)
         |> put_flash(:info, "You signed in successfully.")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, _reason} ->
         conn
         |> put_flash(:error, "The login token is invalid.")
-        |> redirect(to: session_path(conn, :new))
+        |> redirect(to: Routes.session_path(conn, :new))
     end
   end
 
@@ -56,6 +56,6 @@ defmodule PostitWeb.SessionController do
     |> configure_session(drop: true)
     |> delete_session(:user_id)
     |> put_flash(:info, "You logged out successfully. Enjoy your day!")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: Routes.session_path(conn, :new))
   end
 end
