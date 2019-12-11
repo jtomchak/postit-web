@@ -6,6 +6,8 @@ defmodule Postit.UserManager.TokenAuthentication do
 
   alias Postit.Repo
   alias Postit.UserManager.{User, AuthToken}
+  alias Postit.AuthenticationEmail
+  alias Postit.Mailer
   alias Phoenix.Token
   alias PostitWeb.Endpoint
 
@@ -18,8 +20,7 @@ defmodule Postit.UserManager.TokenAuthentication do
   def provide_token(nil), do: {:error, :not_found}
 
   def provide_token(email) when is_binary(email) do
-    User
-    |> Repo.get_by(email: email)
+    Repo.get_by(User, email: email)
     |> send_token()
   end
 
@@ -54,7 +55,7 @@ defmodule Postit.UserManager.TokenAuthentication do
     user_id = token.user.id
 
     # verify the token matching the user id
-    case Token.verify(Endpoint, "user", token.value, max_age: @token_max_age) do
+    case Token.verify(PostitWeb.Endpoint, "user", token.value, max_age: @token_max_age) do
       {:ok, ^user_id} ->
         {:ok, token.user}
 

@@ -35,7 +35,7 @@ defmodule PostitWeb.SessionController do
       {:ok, user} ->
         conn
         |> assign(:current_user, user)
-        |> put_session(:user_id, user.id)
+        |> put_session(:current_user_id, user.id)
         |> configure_session(renew: true)
         |> put_flash(:info, "You signed in successfully.")
         |> redirect(to: Routes.post_path(conn, :index))

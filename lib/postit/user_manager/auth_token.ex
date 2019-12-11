@@ -9,7 +9,7 @@ defmodule Postit.UserManager.AuthToken do
     field :value, :string
     belongs_to :user, User
 
-    timestamps()
+    timestamps(updated_at: false)
   end
 
   @doc false
@@ -27,6 +27,6 @@ defmodule Postit.UserManager.AuthToken do
   defp generate_token(nil), do: nil
 
   defp generate_token(user) do
-    Token.sign(Endpoint, "user", user.id)
+    Token.sign(PostitWeb.Endpoint, "user", user.id)
   end
 end
