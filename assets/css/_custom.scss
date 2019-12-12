@@ -1,10 +1,36 @@
+@charset "utf-8";
+// 1. Import the initial variables
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+// @import "~bulma/sass/utilities/_all";
+
+
 // $box-background-color: #ffb3b3;
 
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 body {width:100%; height:100%; padding: 0; margin: 0;}
 
 main.section {
   min-height: 100vh;
-  background-color: #b2b0b024;
+  // background-color: #b2b0b024;
 }
 
+// Update blue
+$blue: #72d0eb;
+$blue-invert: #f4fdff;
+// Add pink and its invert
+$pink: #ffb3b3;
+$pink-invert: #fff;
+// Add a serif family
+$family-serif: "Merriweather", "Georgia", serif;
+
+// 3. Set the derived variables
+// Use the new pink as the primary color
+$primary: $blue;
+$primary-invert: $blue-invert;
+// Use the existing orange as the danger color
+$danger: $orange;
+// Use the new serif family
+$family-primary: $family-serif;

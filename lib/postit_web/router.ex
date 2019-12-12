@@ -30,10 +30,10 @@ defmodule PostitWeb.Router do
 
   scope "/", PostitWeb do
     pipe_through [:browser, PostitWeb.Plugs.AuthenticateUser]
-    get "/", PageController, :index
 
     get "/show", PageController, :show
     resources "/posts", PostController
+    get "/account", AccountsController, :index
     get "/logout", SessionController, :delete
   end
 

@@ -12,32 +12,35 @@
     <header>
       <section class="container">
         <nav role="navigation" class="navbar" aria-label="main navigation">
-        <div class="container">
         <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img src="/images/post-it-brand.png" >
         </a>
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-        </div>
         </div>
 
     <div id="navbarMenu" class="navbar-menu">
+    <div class="navbar-start">
+      <a class=navbar-item href="/posts">Posts</a>
+
+       
+      </div>
+      </div>
+        </div>
+
     <div class="navbar-end">
            <%= if @user_signed_in? do %>
-      <div class="navbar-item">
-           <a class="navbar-item is-active" href="/posts">Posts</a>
-           </div>
         <div class="buttons">
-           <div class="navbar-item">
-          <a class="button is-primary" href="/logout">
-            <strong>Logout</strong>
+        <div class="navbar-item">
+          <a class="button is-primary" href="/posts/new">
+            <strong>New Post</strong>
           </a>
           </div>
           <% else %>
+           <div class="navbar-item">
+          <a class="button is-primary" href="/signup">
+            <strong>Sign Up</strong>
+          </a>
+          </div>
           <div class="navbar-item">
           <a class="button is-primary" href="/login">
             Log in
