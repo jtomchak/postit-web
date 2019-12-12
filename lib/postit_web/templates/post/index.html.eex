@@ -1,4 +1,3 @@
-<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
 <div class="columns">
   <div class="column is-three-fifths is-offset-one-fifth">
 <%= if @active_streak do %> 
