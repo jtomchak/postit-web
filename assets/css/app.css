@@ -5,9 +5,9 @@
 @tailwind components;
 
 /* Put your custom components here */
+@tailwind utilities;
 @import 'editor.css';
 
-@tailwind utilities;
 
 /* Put your custom utilities here */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700');
