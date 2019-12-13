@@ -26,8 +26,6 @@ defmodule Postit.UserManager.User do
     user
     |> cast(attrs, [:email, :plain_text_password, :username, :fullname])
     |> validate_required([:email])
-    |> validate_length(:plain_text_password, min: 6)
-    |> validate_length(:email, min: 3)
     |> unique_constraint(:email)
     |> downcase_email()
     |> encrypt_password

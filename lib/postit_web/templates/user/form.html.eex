@@ -8,15 +8,12 @@
             <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center mt-8 px-2">
                 <div class="px-6 py-8 bg-white sm:bg-gray-100 rounded shadow-md text-black w-full">
                     <h1 class="mb-8 text-3xl text-center">Beta Sign up</h1>
-                      <%= text_input f, :email, class: "block border border-grey-light w-full p-3 rounded mb-4", 
+                      <%= text_input f, :domain, class: "block border border-grey-light w-full p-3 rounded mb-4", 
                       placeholder: "joey.postit.blog" %>
-                      <%= error_tag f, :email %>
+                      <%= error_tag f, :domain %>
 
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="email"
-                        placeholder="Email" />
+                      <%= text_input f, :email, class: "block border border-grey-light w-full p-3 rounded mb-4", placeholder: "Email" %>
+                    
                      <%= submit "Reserve My Spot", class: "w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1" %>
 
                     <div class="text-center text-sm text-grey-dark mt-4">
@@ -38,22 +35,4 @@
                 </div>
             </div>
         </div>
-  <%= label f, :email %>
-  <%= text_input f, :email %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :password %>
-  <%= text_input f, :plain_text_password %>
-  <%= error_tag f, :plain_text_password %>
-
-  <%= label f, :username %>
-  <%= text_input f, :username %>
-  <%= error_tag f, :username %>
-
-  <%= label f, :fullname %>
-  <%= text_input f, :fullname %>
-  <%= error_tag f, :fullname %>
-  <div>
-    <%= submit "Save" %>
-  </div>
 <% end %>
