@@ -9,14 +9,11 @@ defmodule Postit.Posting.PostService do
   # Can load the user association instead of passing it
   # make sure the ok 200 is coming from trigger_build, not hard coded. 
   def create_post(post_changeset) do
-    Logger.info("Trying to post: #{inspect(post_changeset)}")
-
     Multi.new()
     |> Multi.insert(:posts, Post.changeset(%Post{}, post_changeset))
     |> Multi.run(:trigger_build, fn repo, %{posts: posts} ->
       # Now trigger the build
       trigger_build(post_changeset)
-      Logger.info("mutli line exectue: #{inspect(posts)}")
       {:ok, posts}
     end)
     |> Repo.transaction()

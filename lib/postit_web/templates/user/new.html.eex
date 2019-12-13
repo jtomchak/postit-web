@@ -1,2 +1,2 @@
-<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :create)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :beta)) %>
 

@@ -3,15 +3,15 @@ defmodule Postit.UserManager.User do
   import Ecto.Changeset
 
   alias Postit.Posting.Post
-  alias Postit.UserManager.{User, Encryption, AuthToken}
+  alias Postit.UserManager.{User, Encryption, AuthToken, Domain}
 
   alias Argon2
 
   schema "users" do
     field :email, :string
     field :password, :string
-    field :username, :string, unique: true, null: false
-    field :fullname, :string, null: false
+    field :username, :string, unique: true
+    field :fullname, :string
 
     # VIRTUAL FIELDS
     field :plain_text_password, :string, virtual: true
@@ -19,6 +19,7 @@ defmodule Postit.UserManager.User do
     has_many :posts, Post
     # add the association among the rest of the schema
     has_many :auth_tokens, AuthToken
+    has_many :domains, Domain
     timestamps()
   end
 
@@ -28,7 +29,6 @@ defmodule Postit.UserManager.User do
     |> validate_required([:email])
     |> unique_constraint(:email)
     |> downcase_email()
-    |> encrypt_password
   end
 
   defp encrypt_password(changeset) do

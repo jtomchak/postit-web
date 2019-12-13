@@ -23,7 +23,9 @@ defmodule PostitWeb.Router do
     get "/signin/:token", SessionController, :show, as: :signin
     resources "/sessions", SessionController, only: [:new, :create, :delete]
 
-    resources "/signup", UserController, only: [:create, :new]
+    # resources "/signup", UserController, only: [:create, :new]
+    get "/signup/beta", UserController, :beta
+    post "/signup/beta", UserController, :beta_create
     get "/login", SessionController, :new
     post "/login", SessionController, :create
   end
