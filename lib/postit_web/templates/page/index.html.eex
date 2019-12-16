@@ -9,7 +9,7 @@
       Your content owned and controlled by you. 
     </h3>
     
-    <%= link "Reserve My Spot", to: Routes.user_path(@conn, :new), class: "bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider" %>
+    <%= link "Reserve My Spot", to: Routes.user_path(@conn, :beta_create), class: "bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider" %>
     
   </div>
 </div>
@@ -87,6 +87,6 @@
         <h3 class="my-4 text-2xl text-white">
           Get Your Personal Domain and Start Creating
         </h3>
-        <%= link "Reserve My Spot", to: Routes.user_path(@conn, :new), class: "bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider" %>
+        <%= link "Reserve My Spot", to: Routes.user_path(@conn, :beta_create), class: "bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider" %>
       </div>
     </section>
