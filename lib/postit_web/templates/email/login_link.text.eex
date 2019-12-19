@@ -1,6 +1,6 @@
 Here is your login link:
 
-<p><%= PostitWeb.Router.Helpers.signin_url(PostitWeb.Endpoint, :show, @token) %>
+<%= PostitWeb.Router.Helpers.signin_url(PostitWeb.Endpoint, :show, @token) %>
 
 
 It is valid for 30 minutes.
