@@ -3,6 +3,7 @@
 
 # Directory of final build prod
 /_render/
+_render
 
 # If you run "mix test --cover", coverage assets end up here.
 /cover/
