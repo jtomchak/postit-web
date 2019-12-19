@@ -8,5 +8,4 @@ secret_key_base = System.get_env("SECRET_KEY_BASE") || default_secret_key_base
 config :postit, PostitWeb.Endpoint,
   http: [port: port],
   url: [host: "postit.blog", port: 80],
-  ssl: true,
   secret_key_base: secret_key_base
