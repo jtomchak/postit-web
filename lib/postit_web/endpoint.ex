@@ -40,7 +40,9 @@ defmodule PostitWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_postit_key",
-    signing_salt: "RhRjDEMC"
+    signing_salt: "RhRjDEMC",
+    # 37 days
+    max_age: 24 * 60 * 60 * 37
 
   plug PostitWeb.Router
 end
