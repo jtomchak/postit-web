@@ -62,7 +62,8 @@ defmodule Postit.MixProject do
       {:httpoison, "~> 1.6"},
       {:timex, "~> 3.6.1"},
       {:bamboo, "~> 1.3"},
-      {:bamboo_smtp, "~> 2.1"}
+      {:bamboo_smtp, "~> 2.1"},
+      {:pow, "~> 1.0.15"}
     ]
   end
 

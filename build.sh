@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# exit on error
+set -o errexit
 export MIX_ENV=prod
 
 # get app name and version from mix.exs
