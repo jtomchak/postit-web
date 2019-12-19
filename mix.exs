@@ -63,7 +63,7 @@ defmodule Postit.MixProject do
       {:timex, "~> 3.6.1"},
       {:bamboo, "~> 1.3"},
       {:bamboo_smtp, "~> 2.1"},
-      {:pow, "~> 1.0.15"}
+      {:telemetry, "~> 0.4.1"}
     ]
   end
 
