@@ -1,12 +1,12 @@
-<div class="columns">
-  <div class="column is-three-fifths is-offset-one-fifth">
+<section class="m-2 font-sans leading-normal flex justify-center">
+<div class="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl overflow-hidden m-4 mb-8">
 <%= if @active_streak do %> 
   "You're on a streak of <%= @active_streak.consecutive_days %> days. Keep it up!"
   <% else  %>
-  "No streak found. No time like now to start"
+  No streak found. No time like now to start
 <% end %>
 <%= for post <- @posts do %>
-    <div class="box">
+    <div class="posts-in-list px-2 py-4">
       <p class="title is-5"><%= post.title %></p>
       <p><%= raw transform_html(post.content) %></p>
 
