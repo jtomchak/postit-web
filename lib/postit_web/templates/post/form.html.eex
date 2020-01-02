@@ -4,8 +4,8 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-  <div class="columns is-fullheight">
-  <div id="postit-md-wrapper" class="column postit-wrapper" ></div>
+  <div class="">
+  <div id="postit-md-wrapper" class="postit-wrapper" ></div>
   <%= textarea f, :content, class: "invisible" %>
   </div>  
 

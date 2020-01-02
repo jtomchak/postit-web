@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body class="text-gray-700 bg-white" style="font-family: 'Source Sans Pro', sans-serif">
+  <body class="h-screen text-gray-700 bg-white" style="font-family: 'Source Sans Pro', sans-serif">
       <nav>
       <div class="container mx-auto px-6 py-2 flex justify-between items-center">
       <%= link "Post It", to: Routes.page_path(@conn, :index), class: "font-bold text-2xl lg:text-4xl" %>

@@ -16,24 +16,14 @@ const mySchema = new Schema({
 let postitForm = document.querySelector("#postit-content-form")
 let place = document.querySelector("#postit-md-wrapper")
 let postContent = document.querySelector("#post_content")
-console.log(postitForm)
-class MarkdownView {
-  constructor(target, content = "") {
-    this.textarea = target
-    this.textarea.value = content;
-  }
 
-  get content() { return this.textarea.value }
-  focus() { this.textarea.focus() }
-  destroy() { this.textarea.remove() }
-}
 
 class ProseMirrorView {
   constructor(target, content = "") {
     this.view = new EditorView(target, {
       state: EditorState.create({
         doc: defaultMarkdownParser.parse(content),
-        plugins: exampleSetup({ schema })
+        plugins: exampleSetup({ schema, menuBar: false })
       })
     })
   }
@@ -52,7 +42,7 @@ window.view = view
 // capture form onSubmit and serialize content then **submit** form
 postitForm.addEventListener('submit', function onSubmit(event) {
   event.preventDefault();
-  postContent.value = view.content
+  postContent.value = view.content;
   postitForm.submit();
 })
 view.focus();
