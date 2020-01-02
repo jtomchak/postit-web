@@ -4,26 +4,20 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-  <div class="">
-  <div id="postit-md-wrapper" class="postit-wrapper" ></div>
+  <div id="postit-md-wrapper" class="postit-wrapper" >
   <%= textarea f, :content, class: "invisible" %>
-  </div>  
 
   <%= error_tag f, :content %>
   </div>
 <input type="hidden" id="timezone" name="published_timezone" value="">
 <%# Main Level Container %>
-  <div class="level is-mobile">
+  <div class="max-w-6xl flex content-center justify-end my-20">
   <%# Left Side %>
-  <div class="level-left">
   <span class="level-item" id="char-count"></span>
   <span class="level-item" id="word-count"></span>
-  <p class="level-item"><%= submit "Save & Exit", name: "publish_type", value: "draft" %></p>
-  </div>
+  <p class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-6"><%= submit "Save & Exit", name: "publish_type", value: "draft" %></p>
+    <p class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><%= submit "Publish",  name: "publish_type", value: "published" %></p>
   <%# Right Side %>
-  <div class="level-right">
-    <p class="level-item"><%= submit "Publish",  name: "publish_type", value: "published" %></p>
-  </div>
   </div>
 <% end %>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/postit_editor.js") %>"></script>
