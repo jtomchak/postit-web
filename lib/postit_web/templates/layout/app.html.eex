@@ -12,7 +12,7 @@
       <nav>
       <div class="container mx-auto px-6 py-2 flex justify-between items-center">
       <%= link "Post It", to: Routes.page_path(@conn, :index), class: "font-bold text-2xl lg:text-4xl" %>
-        <div class="block lg:hidden">
+        <div class="block">
           <ul class="inline-flex">
           <%= if @user_signed_in? do %>
              <li><%= link "New Post", to: Routes.post_path(@conn, :new), class: "button is-primary" %></li>
@@ -26,15 +26,15 @@
         </div>
       </div>
     </nav>
-    <div class="block lg:hidden">
-        <ul class="flex">
-  <li class="flex-1 mr-2">
+    <div class="max-w-lg mx-auto">
+        <div class="flex justify-center">
+  <div class="flex-1 mr-2">
     <%= link "Posts", to: Routes.post_path(@conn, :index), class: active_class(@conn, Routes.post_path(@conn, :index))%>
-  </li>
-  <li class="flex-1 mr-2">
+  </div>
+  <div class="flex-1 mr-2">
     <%= link "Activity", to: Routes.post_path(@conn, :new), class: active_class(@conn, Routes.post_path(@conn, :new))%>
-  </li>
-</ul>
+  </div>
+</div>
         </div>
     <main role="main" class="section">
       <%= unless is_nil(get_flash(@conn, :info)) do %>
