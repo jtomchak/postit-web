@@ -18,17 +18,17 @@ let place = document.querySelector("#postit-md-wrapper")
 let postContent = document.querySelector("#post_content")
 
 
-// class MarkdownView {
-//   constructor(target, content = "") {
-//     this.textarea = target.appendChild(document.createElement("textarea"))
-//     this.textarea.classList.add("ProseMirror");
-//     this.textarea.value = content
-//   }
+class MarkdownView {
+  constructor(target, content = "") {
+    this.textarea = target.appendChild(document.createElement("textarea"))
+    this.textarea.classList.add("ProseMirror");
+    this.textarea.value = content
+  }
 
-//   get content() { return this.textarea.value }
-//   focus() { this.textarea.focus() }
-//   destroy() { this.textarea.remove() }
-// }
+  get content() { return this.textarea.value }
+  focus() { this.textarea.focus() }
+  destroy() { this.textarea.remove() }
+}
 
 // class ProseMirrorView {
 //   constructor(target, content = "") {
@@ -50,22 +50,22 @@ let postContent = document.querySelector("#post_content")
 
 
 // let view = new ProseMirrorView(place)
-// let view = new MarkdownView(place, postContent.value)
+let view = new MarkdownView(place, postContent.value)
 
-let countPlugin = new Plugin({
-  state: {
-    init() { return 0 },
+// let countPlugin = new Plugin({
+//   state: {
+//     init() { return 0 },
 
-  }
-})
+//   }
+// })
 
-let state = EditorState.create({
-  doc: defaultMarkdownParser.parse(""),
-  plugins: exampleSetup({ schema, menuBar: false })
-})
-let view = new EditorView(place, {
-  state
-})
+// let state = EditorState.create({
+//   doc: defaultMarkdownParser.parse(""),
+//   plugins: exampleSetup({ schema, menuBar: false })
+// })
+// let view = new EditorView(place, {
+//   state
+// })
 window.view = view
 
 
@@ -88,8 +88,8 @@ function updateCharCountElement(charCount) {
 // capture form onSubmit and serialize content then **submit** form
 postitForm.addEventListener('submit', function onSubmit(event) {
   event.preventDefault();
-  console.log(markdowSerializer(view.state))
-  postContent.value = markdowSerializer(view.state);
+  console.log(view.content)
+  postContent.value = view.content;
   postitForm.submit();
 })
 // Make focus on-load
