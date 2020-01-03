@@ -30,3 +30,27 @@ body {width:100%; height:100%; padding: 0; margin: 0;}
 .posts-in-list p {
   @apply mb-8;
 }
+
+.posts-in-list p a {
+  @apply text-blue-500;
+  text-decoration: none;
+  padding: 2px;
+ }
+
+ .posts-in-list p a:hover {
+  text-decoration: underline;
+}
+
+.posts-in-list p a:active {
+  color: black;
+}
+
+.posts-in-list p a:visited {
+  color: purple;
+}
+
+.posts-in-list blockquote {
+  @apply my-5 ml-10;
+    padding-left: 15px;
+    border-left: 3px solid #ccc;
+}
