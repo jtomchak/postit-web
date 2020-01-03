@@ -1,4 +1,4 @@
-import { EditorState } from "prosemirror-state"
+import { EditorState, Plugin } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
 import { Schema, DOMParser } from "prosemirror-model"
 import { schema as schemaBasic } from "prosemirror-schema-basic"
@@ -18,32 +18,80 @@ let place = document.querySelector("#postit-md-wrapper")
 let postContent = document.querySelector("#post_content")
 
 
-class ProseMirrorView {
-  constructor(target, content = "") {
-    this.view = new EditorView(target, {
-      state: EditorState.create({
-        doc: defaultMarkdownParser.parse(content),
-        plugins: exampleSetup({ schema, menuBar: false })
-      })
-    })
-  }
+// class MarkdownView {
+//   constructor(target, content = "") {
+//     this.textarea = target.appendChild(document.createElement("textarea"))
+//     this.textarea.classList.add("ProseMirror");
+//     this.textarea.value = content
+//   }
 
-  get content() {
-    return defaultMarkdownSerializer.serialize(this.view.state.doc)
+//   get content() { return this.textarea.value }
+//   focus() { this.textarea.focus() }
+//   destroy() { this.textarea.remove() }
+// }
+
+// class ProseMirrorView {
+//   constructor(target, content = "") {
+//     this.view = new EditorView(target, {
+//       state: EditorState.create({
+//         doc: defaultMarkdownParser.parse(content),
+//         plugins: exampleSetup({ schema, menuBar: false })
+//       })
+//     })
+//   }
+
+//   get content() {
+//     console.log(this.view.state.doc)
+//     return defaultMarkdownSerializer.serialize(this.view.state.doc)
+//   }
+//   focus() { this.view.focus() }
+//   destroy() { this.view.destroy() }
+// }
+
+
+// let view = new ProseMirrorView(place)
+// let view = new MarkdownView(place, postContent.value)
+
+let countPlugin = new Plugin({
+  state: {
+    init() { return 0 },
+
   }
-  focus() { this.view.focus() }
-  destroy() { this.view.destroy() }
+})
+
+let state = EditorState.create({
+  doc: defaultMarkdownParser.parse(""),
+  plugins: exampleSetup({ schema, menuBar: false })
+})
+let view = new EditorView(place, {
+  state
+})
+window.view = view
+
+
+function markdowSerializer(state) {
+  return defaultMarkdownSerializer.serialize(state.doc);
 }
 
+function wordCount(str) {
+  return str.split(' ').filter(a => a.length > 0).length
+}
 
-let view = new ProseMirrorView(place)
-window.view = view
+function updateWordCountElement(wordCount) {
+  document.querySelector("#word-count.level-item").textContent = wordCount;
+}
+
+function updateCharCountElement(charCount) {
+  document.querySelector("#char-count.level-item").textContent = charCount;
+}
 
 // capture form onSubmit and serialize content then **submit** form
 postitForm.addEventListener('submit', function onSubmit(event) {
   event.preventDefault();
-  postContent.value = view.content;
+  console.log(markdowSerializer(view.state))
+  postContent.value = markdowSerializer(view.state);
   postitForm.submit();
 })
+// Make focus on-load
 view.focus();
 

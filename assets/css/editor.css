@@ -339,5 +339,5 @@ textarea.invisible {
 }
 
 .postit-wrapper {
-  @apply flex justify-center;
+  @apply flex justify-center mt-8;
 }
