@@ -21,6 +21,8 @@ defmodule PostitWeb.API.PostView do
       title: post.title,
       content_html: transform_html(post.content),
       createdAt: post.inserted_at,
+      publishedAt: post.published_at,
+      published: post.published,
       slug: post.slug
     }
   end

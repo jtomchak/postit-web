@@ -8,7 +8,7 @@
 <%= for post <- @posts do %>
     <div class="posts-in-list px-2 py-4">
       <p class="title is-5"><%= post.title %></p>
-      <p><%= transform_html(post.content) %></p>
+      <p><%= raw transform_html(post.content) %></p>
 
         <div class="is-pulled-right">
         <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
