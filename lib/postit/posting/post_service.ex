@@ -1,5 +1,5 @@
 defmodule Postit.Posting.PostService do
-  alias Postit.Codefresh
+  alias Postit.Pipeline
   alias Postit.Posting.Post
   alias Postit.Repo
 
@@ -20,7 +20,7 @@ defmodule Postit.Posting.PostService do
   end
 
   defp trigger_build(%{"username" => username}) do
-    Codefresh.trigger_build(username)
+    Pipeline.start_pipeline(username)
     {:ok, "success"}
   end
 end
