@@ -30,27 +30,27 @@ class MarkdownView {
   destroy() { this.textarea.remove() }
 }
 
-// class ProseMirrorView {
-//   constructor(target, content = "") {
-//     this.view = new EditorView(target, {
-//       state: EditorState.create({
-//         doc: defaultMarkdownParser.parse(content),
-//         plugins: exampleSetup({ schema, menuBar: false })
-//       })
-//     })
-//   }
+class ProseMirrorView {
+  constructor(target, content = "") {
+    this.view = new EditorView(target, {
+      state: EditorState.create({
+        doc: defaultMarkdownParser.parse(content),
+        plugins: exampleSetup({ schema, menuBar: false })
+      })
+    })
+  }
 
-//   get content() {
-//     console.log(this.view.state.doc)
-//     return defaultMarkdownSerializer.serialize(this.view.state.doc)
-//   }
-//   focus() { this.view.focus() }
-//   destroy() { this.view.destroy() }
-// }
+  get content() {
+    console.log(this.view.state.doc)
+    return defaultMarkdownSerializer.serialize(this.view.state.doc)
+  }
+  focus() { this.view.focus() }
+  destroy() { this.view.destroy() }
+}
 
 
-// let view = new ProseMirrorView(place)
-let view = new MarkdownView(place, postContent.value)
+let view = new ProseMirrorView(place)
+// let view = new MarkdownView(place, postContent.value)
 
 // let countPlugin = new Plugin({
 //   state: {
