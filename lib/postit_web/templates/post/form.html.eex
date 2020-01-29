@@ -13,8 +13,8 @@
 <%# Main Level Container %>
   <div class="max-w-6xl flex content-center justify-end my-20">
   <%# Left Side %>
-  <span class="level-item" id="char-count"></span>
-  <span class="level-item" id="word-count"></span>
+  <span class="px-4" id="char-count"></span>
+  <span class="px-4" id="word-count"></span>
   <p class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-6"><%= submit "Save & Exit", name: "publish_type", value: "draft" %></p>
     <p class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><%= submit "Publish",  name: "publish_type", value: "published" %></p>
   <%# Right Side %>
