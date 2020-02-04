@@ -4,6 +4,7 @@ import { Schema, DOMParser } from "prosemirror-model"
 import { schema as schemaBasic } from "prosemirror-schema-basic"
 import { addListNodes } from "prosemirror-schema-list"
 import { exampleSetup } from "prosemirror-example-setup"
+import { coreSetup } from "./prosemirror"
 import { schema, defaultMarkdownParser, defaultMarkdownSerializer } from "prosemirror-markdown"
 
 let postitForm = document.querySelector("#postit-content-form")
@@ -16,7 +17,7 @@ class ProseMirrorView {
     this.view = new EditorView(target, {
       state: EditorState.create({
         doc: defaultMarkdownParser.parse(content),
-        plugins: exampleSetup({ schema, menuBar: false })
+        plugins: coreSetup({ schema, menuBar: false })
       }),
       dispatchTransaction: dispatchTransaction
     })
@@ -24,6 +25,7 @@ class ProseMirrorView {
   }
 
   get content() {
+    // return defaultMarkdownSerializer.serialize(this.view.state.doc)
     return defaultMarkdownSerializer.serialize(this.view.state.doc)
   }
   focus() { this.view.focus() }
@@ -42,18 +44,18 @@ const dispatchTransaction = (transaction) => {
 let view = new ProseMirrorView(place)
 
 const calculateWordCount = state => {
-  const content = markdowSerializer(state);
+  const content = markdowSerializer(state.doc);
   //update dom
   updateWordCountElement(wordCount(content))
 }
 
 const calculateCharCount = state => {
-  const content = markdowSerializer(state)
+  const content = markdowSerializer(state.doc)
   updateCharCountElement(content.length)
 }
 
-function markdowSerializer(state) {
-  return defaultMarkdownSerializer.serialize(state.doc);
+function markdowSerializer(doc) {
+  return defaultMarkdownSerializer.serialize(doc);
 }
 
 function wordCount(str) {
@@ -77,8 +79,9 @@ function updateCharCountElement(charCount = 0) {
 // capture form onSubmit and serialize content then **submit** form
 postitForm.addEventListener('submit', function onSubmit(event) {
   event.preventDefault();
+  console.log(view.content)
   postContent.value = view.content;
-  postitForm.submit();
+  // postitForm.submit();
 })
 // Make focus on-load
 view.focus();
