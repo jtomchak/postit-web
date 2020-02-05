@@ -252,6 +252,10 @@ li.ProseMirror-selectednode:after {
   cursor: default;
 }
 
+.ProseMirror a.link, a.active, a.visited {
+  color: #0075ff;
+}
+
 .ProseMirror-prompt {
   background: white;
   padding: 5px 10px 5px 15px;
@@ -340,4 +344,8 @@ textarea.invisible {
 
 .postit-wrapper {
   @apply flex justify-center mt-8;
+}
+
+.postit-wrapper p a {
+  color: #0075ff;
 }

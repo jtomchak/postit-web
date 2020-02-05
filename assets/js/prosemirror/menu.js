@@ -73,13 +73,12 @@ function markItem(markType, options) {
   return cmdItem(toggleMark(markType), passedOptions)
 }
 
-
 function linkItem(markType) {
   let mentItem = new MenuItem({
     title: "Add or remove link",
     icon: icons.link,
     active(state) { return markActive(state, markType) },
-    enable(state) { return true },
+    enable(state) { return !state.selection.empty },
     run(state, dispatch, view) {
       if (markActive(state, markType)) {
         toggleMark(markType)(state, dispatch)

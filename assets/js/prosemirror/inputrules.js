@@ -1,6 +1,6 @@
 import {
   inputRules, wrappingInputRule, textblockTypeInputRule,
-  smartQuotes, emDash, ellipsis
+  smartQuotes, emDash, ellipsis, InputRule
 } from "prosemirror-inputrules"
 
 // : (NodeType) → InputRule
@@ -43,18 +43,20 @@ export function headingRule(nodeType, maxLevel) {
     nodeType, match => ({ level: match[1].length }))
 }
 
+// : (MarkType) -> InputRule
+// Creates an input to turns markdown link `[text](fullQualifiedURL)` 
+// into an text with an anchor tag of the url and title to it
+
 function linkRule(markType) {
-  return MarkInputRule(/(?:(?:(https|http|ftp)+):\/\/)?(?:\S+(?::\S*)?(@))?(?:(?:([a-z0-9][a-z0-9\-]*)?[a-z0-9]+)(?:\.(?:[a-z0-9\-])*[a-z0-9]+)*(?:\.(?:[a-z]{2,})(:\d{1,5})?))(?:\/[^\s]*)?\s$/i, markType, match => ({ type: ((match[2] == '@') ? "email" : "uri") }));
-}
+  const regex = /^\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+)\)$/
+  const markdownLinkRegEx = new RegExp(regex)
+  console.log("linkRule", { markType })
+  return new InputRule(markdownLinkRegEx, (state, match, start, end) => {
+    const [full, text, url] = match;
 
-function MarkInputRule(regexp, markType) {
-  return new InputRule(regexp, (state, match, start, end) => {
-    let tr = state.tr.insertText(match[0], start, end) // Replace existing text with entire match
-    var mark = schema.marks.link.create({ href: match[0], title: 'link' });
-    return tr.addMark(start, start + match[0].length, mark)
-  });
+    return state.tr.insertText(text, start, end).addMark(start, text.length + 1, markType.create({ href: url, title: text }))
+  })
 }
-
 
 
 // : (Schema) → Plugin
@@ -67,6 +69,6 @@ export function buildInputRules(schema) {
   if (type = schema.nodes.bullet_list) rules.push(bulletListRule(type))
   if (type = schema.nodes.code_block) rules.push(codeBlockRule(type))
   if (type = schema.nodes.heading) rules.push(headingRule(type, 6))
-  if (type = schema.nodes.link) rules.push(linkRule(type))
+  if (type = schema.marks.link) rules.push(linkRule(type))
   return inputRules({ rules })
 }

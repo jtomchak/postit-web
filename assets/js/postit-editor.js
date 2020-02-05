@@ -1,16 +1,22 @@
 import { EditorState, Plugin } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
 import { Schema, DOMParser } from "prosemirror-model"
-import { schema as schemaBasic } from "prosemirror-schema-basic"
-import { addListNodes } from "prosemirror-schema-list"
-import { exampleSetup } from "prosemirror-example-setup"
 import { coreSetup } from "./prosemirror"
+// import { schema } from "prosemirror-schema-basic"
+import { addListNodes, addToEnd } from "prosemirror-schema-list"
 import { schema, defaultMarkdownParser, defaultMarkdownSerializer } from "prosemirror-markdown"
 
 let postitForm = document.querySelector("#postit-content-form")
 let place = document.querySelector("#postit-md-wrapper")
 let postContent = document.querySelector("#post_content")
 
+// const newSchema = new Schema({
+//   nodes: schema.nodeSpec,
+//   marks: schema.markSpec.addToEnd('link', {
+//     parseDOM: [{ tag: 'a' }],
+//     toDOM() { return ['a'] }
+//   })
+// })
 
 class ProseMirrorView {
   constructor(target, content = "") {
