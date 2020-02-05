@@ -87,7 +87,7 @@ postitForm.addEventListener('submit', function onSubmit(event) {
   event.preventDefault();
   console.log(view.content)
   postContent.value = view.content;
-  // postitForm.submit();
+  postitForm.submit();
 })
 // Make focus on-load
 view.focus();
