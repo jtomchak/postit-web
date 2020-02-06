@@ -1,6 +1,5 @@
 defmodule PostitWeb.API.PostController do
   use PostitWeb, :controller
-  require Logger
 
   alias Postit.Posting
   alias Postit.UserManager

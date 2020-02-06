@@ -12,7 +12,8 @@ defmodule Postit.Pipeline do
   defp post_body(username) do
     %{
       "build" => %{
-        "username" => username
+        "username" => username,
+        "title" => "Jesse Tomchak Blog"
       }
     }
     |> Poison.encode!()
