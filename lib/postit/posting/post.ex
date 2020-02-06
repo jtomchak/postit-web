@@ -28,6 +28,7 @@ defmodule Postit.Posting.Post do
     |> cast(attrs, [:title, :content, :published, :user_id, :published_at])
     |> validate_required([:content, :user_id])
     |> process_slug
+    |> generate_relative_url
   end
 
   # Private
@@ -61,4 +62,23 @@ defmodule Postit.Posting.Post do
     content_list = String.split(content)
     Enum.join(Enum.slice(content_list, 0..2), " ")
   end
+
+  defp generate_relative_url(
+         %Ecto.Changeset{valid?: validity, changes: %{slug: slug, published_at: published_at}} =
+           changeset
+       ) do
+    case validity do
+      true ->
+        put_change(
+          changeset,
+          :slug,
+          "#{published_at.year}/#{published_at.month}/#{published_at.day}/#{slug}"
+        )
+
+      false ->
+        changeset
+    end
+  end
+
+  defp generate_relative_url(changeset), do: changeset
 end
