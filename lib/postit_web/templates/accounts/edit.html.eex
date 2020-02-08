@@ -1,5 +1,7 @@
-<h1>Edit Accounts</h1>
+<div class="container mx-auto h-full flex justify-center items-center">
+<div class="">
+  <h1 class="font-hairline mb-6 text-left">User Info</h1>
+<%= render "form.html", Map.put(assigns, :action, Routes.accounts_path(@conn, :update, @user)) %>
+</div>
+</div>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.accounts_path(@conn, :update, @accounts)) %>
-
-<span><%= link "Back", to: Routes.accounts_path(@conn, :index) %></span>

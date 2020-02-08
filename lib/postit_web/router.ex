@@ -35,7 +35,7 @@ defmodule PostitWeb.Router do
 
     get "/show", PageController, :show
     resources "/posts", PostController
-    get "/account", AccountsController, :index
+    resources "/account", AccountsController, only: [:index, :update]
     get "/logout", SessionController, :delete
   end
 

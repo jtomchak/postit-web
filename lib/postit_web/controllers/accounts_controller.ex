@@ -2,25 +2,26 @@ defmodule PostitWeb.AccountsController do
   use PostitWeb, :controller
 
   alias Postit.UserManager.{User, TokenAuthentication}
-  alias Postit.UserManager.Accounts
+  alias Postit.UserManager
   import Logger
 
   def index(conn, _params) do
-    render(conn, "index.html", current_user: conn.assigns.current_user)
+    changeset = UserManager.change_user(%User{})
+    render(conn, "edit.html", user: conn.assigns.current_user, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "current_user" => current_user}) do
-    # event = Events.get_event!(id)
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    changeset = UserManager.change_user(%User{})
+    Logger.info("Account: #{inspect(user_params)}")
 
-    # case Events.update_event(event, account_params) do
-    #   {:ok, event} ->
-    #     conn
-    #     |> put_flash(:info, "Event updated successfully.")
+    case UserManager.update_user(conn.assigns.current_user, user_params) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "User updated successfully. 👍")
+        |> redirect(to: Routes.accounts_path(conn, :index))
 
-    #   # |> redirect(to: Routes.event_path(conn, :show, event))
-
-    #   {:error, %Ecto.Changeset{} = changeset} ->
-    #     render(conn, "edit.html", event: event, changeset: changeset)
-    # end
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", user: conn.assigns.current_user, changeset: changeset)
+    end
   end
 end
