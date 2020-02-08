@@ -10,10 +10,6 @@ use Mix.Config
 config :postit,
   ecto_repos: [Postit.Repo]
 
-config :postit, :config,
-  codefresh_auth_token: System.get_env("CODEFRESH_AUTH_TOKEN"),
-  codefresh_pipeline_id: System.get_env("CODEFRESH_PIPELINE_ID")
-
 # Configures the endpoint
 config :postit, PostitWeb.Endpoint,
   secret_key_base: "DCrs5e9HHwyuWRl8ez3AetNGWyJsqzheDwG+Jh14ZQoKuQ1CzsmSQjA2NwcrrZgL",
