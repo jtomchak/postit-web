@@ -12,6 +12,8 @@ defmodule Postit.UserManager.User do
     field :password, :string
     field :username, :string, unique: true
     field :fullname, :string
+    field :about, :string
+    field :admin, :boolean, default: false
 
     # VIRTUAL FIELDS
     field :plain_text_password, :string, virtual: true
