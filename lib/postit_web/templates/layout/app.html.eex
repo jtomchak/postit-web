@@ -34,6 +34,9 @@
   <div class="flex-1 mr-2">
     <%= link "Activity", to: Routes.post_path(@conn, :new), class: active_class(@conn, Routes.post_path(@conn, :new))%>
   </div>
+  <div class="flex-1 mr-2">
+    <%= link "Account", to: Routes.accounts_path(@conn, :index), class: active_class(@conn, Routes.accounts_path(@conn, :index))%>
+  </div>
 </div>
         </div>
     <main role="main" class="section">

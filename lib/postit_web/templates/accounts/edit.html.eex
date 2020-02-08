@@ -1,7 +1,7 @@
-<div class="container mx-auto h-full flex justify-center items-center">
-<div class="">
-  <h1 class="font-hairline mb-6 text-left">User Info</h1>
+<div class="mx-auto flex-wrap justify-center items-center  border-b mb-6">
+  <div class="font-hairline mb-6 text-right">
+  <span class="md:flex md:w-1/4"">User Info</span>
+  </div>
 <%= render "form.html", Map.put(assigns, :action, Routes.accounts_path(@conn, :update, @user)) %>
-</div>
 </div>
 
