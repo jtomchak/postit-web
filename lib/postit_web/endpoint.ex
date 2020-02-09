@@ -13,7 +13,13 @@ defmodule PostitWeb.Endpoint do
     at: "/",
     from: :postit,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only:
+      ~w(css fonts images js favicon.ico robots.txt apple-developer-merchantid-domain-association)
+
+  plug Plug.Static,
+    at: "/.well-known",
+    from: :postit,
+    only: ~w(apple-developer-merchantid-domain-association)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
