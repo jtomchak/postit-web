@@ -61,7 +61,7 @@ defmodule Postit.MixProject do
       {:earmark, "~> 1.4"},
       {:httpoison, "~> 1.6"},
       {:timex, "~> 3.6.1"},
-      {:bamboo, "~> 1.3"},
+      {:bamboo, "~> 1.4"},
       {:bamboo_smtp, "~> 2.1"},
       {:stripity_stripe, "~> 2.7"},
       {:telemetry, "~> 0.4.1"}

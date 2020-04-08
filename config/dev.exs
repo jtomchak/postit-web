@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :postit, Postit.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "postit",
+  password: "postit",
   database: "postitdb_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

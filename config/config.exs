@@ -36,8 +36,8 @@ config :ueberauth, Ueberauth,
 
 # Bamboo SMTP Email configuration
 config :postit, Postit.Mailer,
-  adapter: Bamboo.MandrillAdapter,
-  api_key: System.get_env("MANDRILL_KEY")
+  adapter: Bamboo.SendGridAdapter,
+  api_key: System.get_env("SENDGRID_KEY")
 
 # Stripity configuration
 config :stripity_stripe, api_key: System.get_env("STRIPE_SECRET")
